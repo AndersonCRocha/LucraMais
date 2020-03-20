@@ -19,6 +19,14 @@ public class Usuario {
 	private String senha;
 	private String nome;
 	
+	public Usuario() {}
+	
+	public Usuario(String nome, String login, String senha) {
+		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_usuario")
 	public Integer getId() {
