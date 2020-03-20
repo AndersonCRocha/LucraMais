@@ -1,0 +1,66 @@
+.formLogin{
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #eee;
+	background-color: #eaeaea;
+	padding: 20px;
+	border-radius: 10px;
+	animation: fade 0.5s;
+}
+label{
+	font-weight: bold;
+}
+.telaLogin{
+	background-color: #2b33a0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.formLogin input{
+	border-radius: 8px;
+	border: 0;
+	padding:10px 10px;
+	margin-bottom: 10px;	
+	width: 100%;
+}
+.rodapeLogin{
+  	bottom: 0;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    text-align: end;
+    position: absolute;
+    display:flex;
+    justify-content: space-between;
+}
+.btn-logar{
+	margin-top: 30px;
+}
+.infoLogin{
+	padding:10px;
+	text-align: center;
+	font-size: 16px;
+}
+
+@keyframes fade {
+	from{
+		opacity:0.5;
+		transform: scale(0.8);
+	}
+	to{
+		opacity:1;
+		transform: scale(1);
+	}
+}
+.logo{
+	display: flex;
+	padding:10px;
+	justify-content: center
+}
+.logo img{
+	position:relative;
+	max-width: 350px;
+	vertical-align: middle;
+}

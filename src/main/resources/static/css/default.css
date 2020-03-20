@@ -1,0 +1,117 @@
+body{
+	margin:0;
+	padding:0;
+	height:100%;
+	width: 100%;
+	box-sizing: border-box;
+}
+.page{
+	display:grid;
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+	width:100%;
+	grid-template-columns: 5fr 1fr;
+	grid-template-rows: 60px 90vh;
+	grid-template-areas: "header aside"
+						 "main main";
+}
+.header{
+	grid-area: header;
+	background-color: black;
+	color:white;
+	width: 100%;
+	position: relative;
+	height: 100%	;	
+	display:flex;
+	justify-content: space-between;
+}
+.main{
+	grid-area: main;
+	background-color: #fafafa;
+	padding: 40px;
+}
+.aside{
+	grid-area: aside;
+	background-color: #ccc;
+	min-width: max-content;
+}
+a{
+	text-decoration: none;
+	text-transform: none;
+}
+a:link{
+	text-decoration: none;
+}
+.content{
+
+}
+.barraBotoes{
+	float:right;
+	padding:20px;
+}
+.tituloPaginas{
+	display:flex;
+	justify-content: space-between;
+}
+.informacoes{
+	position: relative;
+	right: 0;
+	top:0;
+	padding:0;
+	margin:0;
+	width:100%;
+	height:100%;
+}
+.infoUser{
+	position:relative;
+	color:white;
+	background-color: #373737;
+	height: 100%;
+	width:100%;
+	margin:0;
+	padding:0;;
+}
+.infoUser span{
+	color:white;
+	padding-left:10px;;
+}
+.imgUser{
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+}
+.colunaAcao{
+	text-align: end;
+}
+.menuUser{
+	width: 100%;
+  	transform: translate3d(0px, 66px, 0px) !important;
+}
+.logo{
+	display: flex;
+	padding:10px;
+}
+.logo img{
+	position:relative;
+	max-width: 100px;
+	vertical-align: middle;
+}
+.botoesMenuHeader{
+	padding-left: 30px;
+	padding-right: 30px;
+	color:white;
+}
+.botoesMenuHeader:hover{
+	background-color: white;
+}
+.menuHeader{
+	display:flex;
+	justify-content: start;	
+	position:relative;
+	width: 100%
+}
+.row{
+	margin-left: 0;
+	margin-right: 0;
+}
