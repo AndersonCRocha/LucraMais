@@ -47,7 +47,7 @@ public class Funcionario extends Pessoa implements Serializable{
 	public String getPis() {
 		return pis;
 	}
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Cargo getCargo() {
 		return cargo;
 	}

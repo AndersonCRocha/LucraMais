@@ -1,48 +1,74 @@
 package com.projeto.controller;
 
-import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.projeto.bean.Cliente;
-import com.projeto.repository.ClienteRepository;
+import com.projeto.service.ClienteService;
 
-@RestController
-@RequestMapping(value="/api")
+@Controller
+@RequestMapping(value="/login/crud/Cliente")
 public class ClienteController {
 	@Autowired
-	ClienteRepository clienteRepository;
+	private ClienteService clienteService;
 	
-	@GetMapping("/clientes")
-	public List<Cliente> listarClientes(){
-		return clienteRepository.findAll();
-	}
-	
-	@GetMapping("/clientes/{id}")
-	public Cliente encontrarCliente(@PathVariable(value="id") Integer id) {
-		return clienteRepository.findById(id).orElse(null);
-	}
-	
-	@PostMapping("/cliente")
-	public Cliente cadastrarCliente(@RequestBody Cliente cliente) {
-		return clienteRepository.save(cliente);
-	}
-	
-	@DeleteMapping("/cliente")
-	public void deletarCliente(@RequestBody Cliente cliente) {
-		clienteRepository.delete(cliente);
+	@GetMapping("criar")
+	public ModelAndView criar(HttpServletRequest request, @RequestParam(name = "id", required = false)Integer id) {
+		
+		if(id != null) {
+			Optional<Cliente> cliente = clienteService.findById(id);
+			if(cliente.isPresent()) {
+				Cliente form = cliente.get();
+				request.setAttribute("cliente", form);
+			}
+		}
+		request.setAttribute("page", "clienteEntrada.jsp");
+		return new ModelAndView("/login/crud/base");
 	}
 
-	@PutMapping("/cliente")
-	public Cliente atualizarCliente(@RequestBody Cliente cliente) {
-		return clienteRepository.save(cliente);
+	@GetMapping("")
+	public ModelAndView listar(HttpServletRequest request) {
+		request.setAttribute("listaCliente", clienteService.findAll());
+		request.setAttribute("page", "clienteListagem.jsp");
+		return new ModelAndView("/login/crud/base");
+	}
+	
+	@PostMapping("salvar")
+	public ModelAndView salvar(Cliente cliente, RedirectAttributes redirectAttributes)  {
+		try {
+			clienteService.save(cliente);
+			redirectAttributes.addFlashAttribute("sucesso", "Cliente salvo com sucesso");
+			return new ModelAndView("redirect:/login/crud/Cliente");
+		}catch(Exception e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("erro", "Erro : "+e.getMessage());
+		}
+		redirectAttributes.addFlashAttribute("cliente", cliente);
+		return new ModelAndView("redirect:/login/crud/Cliente/criar");
+	}
+	
+	@GetMapping("excluir")
+	public ModelAndView excluir(@RequestParam(name = "id", required = true)Integer id,  RedirectAttributes redirectAttributes) {
+		
+		if(id != null){
+			try {
+				clienteService.deleteById(id);
+				redirectAttributes.addFlashAttribute("sucesso", "Cliente deletado com sucesso");
+			}catch(Exception e) {
+				redirectAttributes.addFlashAttribute("erro", "Não foi possível excluir esse cliente.");
+			}
+		}
+		
+		return new ModelAndView("redirect:/login/crud/Cliente");
 	}
 }

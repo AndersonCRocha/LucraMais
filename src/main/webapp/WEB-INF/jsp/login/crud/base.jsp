@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.projeto.bean.Usuario" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,6 +25,11 @@
         <title>Lucra+</title>
     </head>
     <body>	
+    	<%
+    		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+    	%>
+    	<c:set var="usuario" value="<%= usuario %>"/>
+    	
 	    <div class="page">
 <!-- 	    	Inicio do cabeçalho -->
 	    	<header class="header">
@@ -34,9 +40,11 @@
 						    <span><i class="fa fa-plus"></i> Cadastros</span>
 						</button>
 						<div class="dropdown-menu cadastros" aria-labelledby="dropdownCadastro">
-							<a class="dropdown-item" href="/login/crud/Usuario"><i class="fa fa-user"></i> Usuários</a>
+							<c:if test="${usuario.admin}"><a class="dropdown-item" href="/login/crud/Usuario"><i class="fa fa-user"></i> Usuários </a></c:if>
+							<a class="dropdown-item" href="/login/crud/Cargo"><i class="fa fa-sitemap"></i> Cargos</a>
+							<a class="dropdown-item" href="/login/crud/Funcionario"><i class="fa fa-briefcase"></i> Funcionários</a>
+	    					<a class="dropdown-item" href="/login/crud/Cliente"><i class="fa fa-group"></i> Clientes</a>
 	    					<a class="dropdown-item" href="/login/crud/Produto"><i class="fa fa-coffee"></i> Produtos</a>
-	    					<a class="dropdown-item" href="#"><i class="fa fa-group"></i> Clientes</a>
 	    					<a class="dropdown-item" href="#"><i class="fa fa-tags"></i> Matérias-primas</a>
 	    					<a class="dropdown-item" href="/login/crud/Fornecedor"><i class="fa fa-truck"></i> Fornecedores</a>
 	    					<a class="dropdown-item" href="#"><i class="fa fa-group"></i> Funcionários</a>
@@ -48,7 +56,10 @@
 						    <span><i class="fa fa-file-pdf"></i> Relatórios</span>
 						</button>
 						<div class="dropdown-menu relatorios" aria-labelledby="dropdownRelatorio">
-							<a class="dropdown-item" href="#"><i class="fa fa-user"></i> Usuários</a>
+							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
+							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
+							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
+							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
 						</div>
 					</div>
 					
@@ -57,7 +68,10 @@
 						    <span><i class="fa fa-cogs"></i> Configurações</span>
 						</button>
 						<div class="dropdown-menu configs" aria-labelledby="dropdownConfigs">
-							<a class="dropdown-item" href="#"><i class="fa fa-user"></i> Usuários</a>
+							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
+							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
+							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
+							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
 						</div>
 					</div>
 					
@@ -104,11 +118,11 @@
 	    		<div class="informacoes">
 					<div class="btn-group infoUser" role="group">
 						<button id="dropdownInfoUser" type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
-						    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSXnxEAFRs6OEBhBB9IrDAW1P_fJMGzANmk29ofnCS14pJ8Pcye" class="imgUser">
-						    <span> Administrador</span>
+						    <span><i class="fa fa-user"></i>&nbsp;&nbsp; ${usuario.primeiroNome}</span>
 						</button>
 						<div class="dropdown-menu menuUser" aria-labelledby="dropdownInfoUser">
-							<a class="dropdown-item" href="#"> <i class="fa fa-user"></i> Admin</a>
+							<a class="dropdown-item" href="/login/crud/Usuario/criar?id=${usuario.id}"> <i class="fa fa-pencil-square-o"></i> Editar perfil</a>
+							<a class="dropdown-item" href="#"> <i class="fa fa-key"></i> Alterar senha</a>
 							<a class="dropdown-item" href="/logout" title="Sair"><i class="fa fa-sign-out"></i> Sair</a>
 						</div>
 					</div>
@@ -116,5 +130,6 @@
 	    	</aside>
 <!-- 	    	Fim do menu lateral -->
 	    </div>
+        <script type="text/javascript" src="/js/utilDOM.js"></script>
     </body>
 </html>

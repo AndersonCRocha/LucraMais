@@ -49,7 +49,6 @@ public abstract class Pessoa implements Serializable{
 	public String getTelefone() {
 		return telefone;
 	}
-	@Length(max = 11, min = 11, message = "O CPF deve conter 10 números")
 	@Column(unique = true)
 	public String getCpf() {
 		return cpf;

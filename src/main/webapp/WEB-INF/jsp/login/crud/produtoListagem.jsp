@@ -18,7 +18,7 @@
 	<thead class="thead-dark">
 		<tr class="row">
 			<th class="col-2">Nome</th>
-			<th class="col-1">Un. Medida</th>
+			<th class="col-1">Un.</th>
 			<th class="col-4">Descrição Nutricional</th>
 			<th class="col-2">Fornecedor</th>
 			<th class="col-1">Preço</th>

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -18,13 +19,15 @@ public class Usuario {
 	private String login;
 	private String senha;
 	private String nome;
+	private Boolean admin;
 	
 	public Usuario() {}
 	
-	public Usuario(String nome, String login, String senha) {
+	public Usuario(String nome, String login, String senha, Boolean admin) {
 		this.nome = nome;
 		this.login = login;
 		this.senha = senha;
+		this.admin = admin;
 	}
 
 	@Id
@@ -42,6 +45,9 @@ public class Usuario {
 	public String getNome() {
 		return nome;
 	}
+	public Boolean getAdmin() {
+		return admin;
+	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -53,6 +59,15 @@ public class Usuario {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
+	}
+	
+	@Transient
+	public String getPrimeiroNome() {
+		String[] primeiroNome =  this.nome.split(" ");
+		return primeiroNome[0];
 	}
 	
 }

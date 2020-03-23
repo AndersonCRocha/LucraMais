@@ -2,7 +2,7 @@
 
 <h1>Cadastro de produtos</h1>		
 
-<form action="/login/crud/Produto/salvar" method="POST" accept-charset="iso-8859-1">
+<form action="/login/crud/Produto/salvar" method="POST" accept-charset="utf-8">
 	<div class="form-group">
 		<input type="hidden" name="id" value="${produto.id}">
 		<label for="nome">Nome:</label>

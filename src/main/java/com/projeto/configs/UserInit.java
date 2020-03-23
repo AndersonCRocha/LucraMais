@@ -16,7 +16,7 @@ public class UserInit {
 	@Bean
 	public void criaUsuario(){
 		if(usuarioService.findByLogin("admin") == null) {
-			usuarioService.save(new Usuario("Administrador","admin","admin"));
+			usuarioService.save(new Usuario("Administrador","admin","admin",Boolean.TRUE));
 		}
 	}
 }

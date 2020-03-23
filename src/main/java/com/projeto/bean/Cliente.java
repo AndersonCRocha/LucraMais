@@ -47,7 +47,6 @@ public class Cliente extends Pessoa implements Serializable {
 	public String getRg() {
 		return rg;
 	}
-	@Length(max = 14, min = 14, message = "O CNPJ deve conter 11 números")
 	@Column(unique = true)
 	public String getCnpj() {
 		return cnpj;

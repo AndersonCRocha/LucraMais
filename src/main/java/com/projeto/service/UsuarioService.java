@@ -28,6 +28,11 @@ public class UsuarioService {
 	}
 	
 	public Usuario save(Usuario usuario) {
+		if(usuario.getId() != null) {
+			Usuario usuarioBanco = usuarioRepository.findByLogin(usuario.getLogin());
+			usuario.setSenha(usuarioBanco.getSenha());
+		}
+		
 		return usuarioRepository.saveAndFlush(usuario);
 	}
 	

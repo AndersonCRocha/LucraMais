@@ -2,7 +2,7 @@
 
 <h1>Cadastro de fornecedores</h1>		
 
-<form action="/login/crud/Fornecedor/salvar" method="POST" accept-charset="iso-8859-1">
+<form action="/login/crud/Fornecedor/salvar" method="POST" accept-charset="utf-8">
 	<div class="form-group">
 		<input type="hidden" name="id" value="${fornecedor.id}">
 		<label for="nome">Nome:</label>

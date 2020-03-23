@@ -27,6 +27,7 @@ public class LoginController {
 		
 		if(autenticar(usuario)) {
 			HttpSession session = request.getSession();
+			usuario = usuarioService.findByLogin(usuario.getLogin());
 			session.setAttribute("usuarioLogado", usuario);
 			response.sendRedirect((String)session.getAttribute("urlParaAutenticar"));
 			return null;
