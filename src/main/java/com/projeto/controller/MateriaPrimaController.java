@@ -1,50 +1,80 @@
 package com.projeto.controller;
 
-import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.projeto.bean.MateriaPrima;
-import com.projeto.repository.MateriaPrimaRepository;
+import com.projeto.service.FornecedorService;
+import com.projeto.service.MateriaPrimaService;
 
-@RestController
-@RequestMapping(value="/api")
+@Controller
+@RequestMapping(value="/login/crud/MateriaPrima")
 public class MateriaPrimaController {
-	
+
 	@Autowired
-	MateriaPrimaRepository materiaPrimaRepository;
+	private MateriaPrimaService materiaPrimaService;
+	@Autowired
+	private FornecedorService fornecedorService;
 	
-	@GetMapping("/materiaPrimas")
-	public List<MateriaPrima> listarMateriaPrimas(){
-		return materiaPrimaRepository.findAll();
-	}
-	
-	@GetMapping("/materiaPrima/{id}")
-	public MateriaPrima encontrarMateriaPrima(@PathVariable(value="id") Integer id) {
-		return materiaPrimaRepository.findById(id).orElse(null);
-	}
-	
-	@PostMapping("/materiaPrima")
-	public MateriaPrima cadastrarMateriaPrima(@RequestBody MateriaPrima materiaPrima) {
-		return materiaPrimaRepository.save(materiaPrima);
-	}
-	
-	@DeleteMapping("/materiaPrima")
-	public void deletarMateriaPrima(@RequestBody MateriaPrima materiaPrima) {
-		materiaPrimaRepository.delete(materiaPrima);
+	@GetMapping("criar")
+	public ModelAndView criar(HttpServletRequest request, @RequestParam(name = "id", required = false)Integer id) {
+		
+		if(id != null) {
+			Optional<MateriaPrima> materiaPrima = materiaPrimaService.findById(id);
+			if(materiaPrima.isPresent()) {
+				MateriaPrima form = materiaPrima.get();
+				request.setAttribute("materiaPrima", form);
+			}
+		}
+		request.setAttribute("listaFornecedor", fornecedorService.findAll());
+		request.setAttribute("page", "materiaPrimaEntrada.jsp");
+		return new ModelAndView("/login/crud/base");
 	}
 
-	@PutMapping("/materiaPrima")
-	public MateriaPrima atualizarMateriaPrima(@RequestBody MateriaPrima materiaPrima) {
-		return materiaPrimaRepository.save(materiaPrima);
+	@GetMapping("")
+	public ModelAndView listar(HttpServletRequest request) {
+		request.setAttribute("listaMateriaPrima", materiaPrimaService.findAll());
+		request.setAttribute("page", "materiaPrimaListagem.jsp");
+		return new ModelAndView("/login/crud/base");
+	}
+	
+	@PostMapping("salvar")
+	public ModelAndView salvar(MateriaPrima materiaPrima, RedirectAttributes redirectAttributes)  {
+		try {
+			materiaPrimaService.save(materiaPrima);
+			redirectAttributes.addFlashAttribute("sucesso", "MateriaPrima salva com sucesso");
+			return new ModelAndView("redirect:/login/crud/MateriaPrima");
+		}catch(Exception e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("erro", "Erro : "+e.getMessage());
+		}
+		redirectAttributes.addFlashAttribute("materiaPrima", materiaPrima);
+		return new ModelAndView("redirect:/login/crud/MateriaPrima/criar");
+	}
+	
+	@GetMapping("excluir")
+	public ModelAndView excluir(@RequestParam(name = "id", required = true)Integer id,  RedirectAttributes redirectAttributes) {
+		
+		if(id != null){
+			try {
+				materiaPrimaService.deleteById(id);
+				redirectAttributes.addFlashAttribute("sucesso", "MateriaPrima deletada com sucesso");
+			}catch(Exception e) {
+				redirectAttributes.addFlashAttribute("erro", "Não foi possível excluir essa materiaPrima.");
+			}
+		}
+		
+		return new ModelAndView("redirect:/login/crud/MateriaPrima");
 	}
 }
 

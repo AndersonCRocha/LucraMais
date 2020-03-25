@@ -12,15 +12,13 @@
 				<label for="login">Login:</label>
 				<input type="text" name="login" class="form-control" placeholder="Login" value="${usuario.login}" autocomplete="off" required>
 			</div>
-			<div class="col-2 " style="padding: 0;">
+			<div class="col-2 " style="padding: 0; display:${empty usuario.id ? "block":"none"};">
 				<label for="admin">Administrador:</label>
 				<input type="checkbox" name="admin" class="form-check" value="${usuario.admin}" ${usuario.admin == true ? 'checked' : ''}>
-			</div>			
+			</div>		
 		</div>
-		<c:if test="${empty usuario.id }">
-			<label for="senha">Senha:</label>
-			<input type="password" name="senha" class="form-control" placeholder="Senha" required>
-		</c:if>
+		<label for="senha">Senha:</label>
+		<input type="password" name="senha" class="form-control" placeholder="Senha" required>
 		<br>
 		<div class="barraBotoes">
 			<a class="btn btn-secondary" href="/login/crud/Usuario"><i class="fa fa-reply"></i> Voltar para listagem</a>

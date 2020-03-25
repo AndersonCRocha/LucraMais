@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -47,7 +46,6 @@ public class Cliente extends Pessoa implements Serializable {
 	public String getRg() {
 		return rg;
 	}
-	@Column(unique = true)
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -61,7 +59,6 @@ public class Cliente extends Pessoa implements Serializable {
 	public Endereco getEndereco() {
 		return endereco;
 	}
-	@Transient
 	@OneToMany(mappedBy = "cliente")
 	public List<PedidoVenda> getListaPedidoVenda() {
 		return listaPedidoVenda;

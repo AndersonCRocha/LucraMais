@@ -30,7 +30,6 @@
 				<td class="col-4">${usuario.login}</td>
 				<td class="col-1">${usuario.admin == true ? "SIM" : "NÃO"}</td>
 				<td class="col-2 colunaAcao">
-					<a class="btn btn-secondary" href="/login/crud/Usuario/criar?id=${usuario.id}" title="Editar"><i class="fa fa-pencil"></i></a>
 					<button class="btn btn-danger" onclick="excluirUsuario(${usuario.id});" title="Excluir"><i class="fa fa-trash"></i></button>
 				</td>
 			</tr>

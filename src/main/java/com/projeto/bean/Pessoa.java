@@ -49,7 +49,6 @@ public abstract class Pessoa implements Serializable{
 	public String getTelefone() {
 		return telefone;
 	}
-	@Column(unique = true)
 	public String getCpf() {
 		return cpf;
 	}

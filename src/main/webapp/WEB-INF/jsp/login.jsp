@@ -35,7 +35,6 @@
 		<div class="rodapeLogin"><span>&copy; Todos os direitos reservados 2020</span><span>Criado por: <Strong>Anderson Rocha - João Pedro</Strong></span></div>
 	</div>
 	<ul class="squares"></ul>
-	
 	<script type="text/javascript" src="/js/login.js"></script>
 </body>
 </html>

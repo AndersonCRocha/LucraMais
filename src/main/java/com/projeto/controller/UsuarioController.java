@@ -1,7 +1,5 @@
 package com.projeto.controller;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +23,7 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	@GetMapping("criar")
-	public ModelAndView criar(HttpServletRequest request, @RequestParam(name = "id", required = false)Integer id) {
-		
-		if(id != null) {
-			Optional<Usuario> usuario = usuarioService.findById(id);
-			if(usuario.isPresent()) {
-				Usuario form = usuario.get();
-				request.setAttribute("usuario", form);
-			}
-		}
+	public ModelAndView criar(HttpServletRequest request) {
 		request.setAttribute("page", "usuarioEntrada.jsp");
 		return new ModelAndView("/login/crud/base");
 	}

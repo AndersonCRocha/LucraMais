@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.projeto.bean.enums.TipoPessoa" %>
+<%@ page import="com.projeto.bean.enums.SituacaoCliente" %>
 
 <h1>Cadastro de clientes</h1>		
 
@@ -27,7 +28,7 @@
 			<div class="col-lg-4">
 				<label>Tipo de pessoa</label><br>
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="tipoPessoa" id="pessoaFisica" value="PESSOA_FISICA" ${cliente.tipoPessoa == TipoPessoa.PESSOA_FISICA ? 'checked' : ''}>
+					<input class="form-check-input" type="radio" name="tipoPessoa" id="pessoaFisica" value="PESSOA_FISICA" ${cliente.tipoPessoa == TipoPessoa.PESSOA_FISICA ? 'checked' : empty cliente ? 'checked' : ''}>
 					<label class="form-check-label" for="pessoaFisica" style="font-weight: normal;">Pessoa Física</label>
 				</div>
 				<div class="form-check form-check-inline"> 
@@ -61,19 +62,19 @@
 			<div class="col-lg-4">
 				<label>Situação do cliente</label><br>
 				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoRuim" value="RUIM" >
+					<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoRuim" value="RUIM" ${cliente.situacaoCliente == SituacaoCliente.RUIM ? 'checked' : ''}>
 					<label class="form-check-label" for="situacaoRuim" style="font-weight: normal;">Ruim</label>
 				</div>
 				<div class="form-check form-check-inline"> 
-				  	<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoRegular" value="REGULAR" >
+				  	<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoRegular" value="REGULAR" ${cliente.situacaoCliente == SituacaoCliente.REGULAR ? 'checked' : ''}>
 				  	<label class="form-check-label" for="situacaoRegular" style="font-weight: normal;">Regular</label>
 				</div>
 				<div class="form-check form-check-inline"> 
-				  	<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoBom" value="BOM" >
+				  	<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoBom" value="BOM" ${cliente.situacaoCliente == SituacaoCliente.BOM ? 'checked' : ''}>
 				  	<label class="form-check-label" for="situacaoBom" style="font-weight: normal;">Bom</label>
 				</div>
 				<div class="form-check form-check-inline"> 
-				  	<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoOtimo" value="OTIMO" >
+				  	<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoOtimo" value="OTIMO" ${cliente.situacaoCliente == SituacaoCliente.OTIMO ? 'checked' : ''}>
 				  	<label class="form-check-label" for="situacaoOtimo" style="font-weight: normal;">Ótimo</label>
 				</div>
 			</div>	

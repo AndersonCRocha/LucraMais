@@ -1,51 +1,82 @@
 package com.projeto.controller;
 
-import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.projeto.bean.PedidoVenda;
-import com.projeto.repository.PedidoVendaRepository;
+import com.projeto.service.ClienteService;
+import com.projeto.service.PedidoVendaService;
 
-@RestController
-@RequestMapping(value="/api")
+@Controller
+@RequestMapping(value="/login/crud/PedidoVenda")
 public class PedidoVendaController {
 	
 	@Autowired
-	PedidoVendaRepository pedidoVendaRepository;
+	private PedidoVendaService pedidoVendaService;
+	@Autowired
+	private ClienteService clienteService;
 	
-	@GetMapping("/pedidoVendas")
-	public List<PedidoVenda> listarPedidoVendas(){
-		return pedidoVendaRepository.findAll();
-	}
-	
-	@GetMapping("/pedidoVenda/{id}")
-	public PedidoVenda encontrarPedidoVenda(@PathVariable(value="id") Integer id) {
-		return pedidoVendaRepository.findById(id).orElse(null);
-	}
-	
-	@PostMapping("/pedidoVenda")
-	public PedidoVenda cadastrarPedidoVenda(@RequestBody PedidoVenda pedidoVenda) {
-		return pedidoVendaRepository.save(pedidoVenda);
-	}
-	
-	@DeleteMapping("/pedidoVenda")
-	public void deletarPedidoVenda(@RequestBody PedidoVenda pedidoVenda) {
-		pedidoVendaRepository.delete(pedidoVenda);
+	@GetMapping("criar")
+	public ModelAndView criar(HttpServletRequest request, @RequestParam(name = "id", required = false)Integer id) {
+		
+		if(id != null) {
+			Optional<PedidoVenda> pedidoVenda = pedidoVendaService.findById(id);
+			if(pedidoVenda.isPresent()) {
+				PedidoVenda form = pedidoVenda.get();
+				request.setAttribute("pedidoVenda", form);
+			}
+		}
+		request.setAttribute("listaCliente", clienteService.findAll());
+		request.setAttribute("page", "pedidoVendaEntrada.jsp");
+		return new ModelAndView("/login/crud/base");
 	}
 
-	@PutMapping("/pedidoVenda")
-	public PedidoVenda atualizarPedidoVenda(@RequestBody PedidoVenda pedidoVenda) {
-		return pedidoVendaRepository.save(pedidoVenda);
+	@GetMapping("")
+	public ModelAndView listar(HttpServletRequest request) {
+		request.setAttribute("listaPedidoVenda", pedidoVendaService.findAll());
+		request.setAttribute("page", "pedidoVendaListagem.jsp");
+		return new ModelAndView("/login/crud/base");
 	}
+	
+	@PostMapping("salvar")
+	public ModelAndView salvar(PedidoVenda pedidoVenda, RedirectAttributes redirectAttributes)  {
+		try {
+			pedidoVendaService.save(pedidoVenda);
+			redirectAttributes.addFlashAttribute("sucesso", "PedidoVenda salvo com sucesso");
+			return new ModelAndView("redirect:/login/crud/PedidoVenda");
+		}catch(Exception e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("erro", "Erro : "+e.getMessage());
+		}
+		redirectAttributes.addFlashAttribute("pedidoVenda", pedidoVenda);
+		return new ModelAndView("redirect:/login/crud/PedidoVenda/criar");
+	}
+	
+	@GetMapping("excluir")
+	public ModelAndView excluir(@RequestParam(name = "id", required = true)Integer id,  RedirectAttributes redirectAttributes) {
+		
+		if(id != null){
+			try {
+				pedidoVendaService.deleteById(id);
+				redirectAttributes.addFlashAttribute("sucesso", "PedidoVenda deletado com sucesso");
+			}catch(Exception e) {
+				redirectAttributes.addFlashAttribute("erro", "Não foi possível excluir esse pedidoVenda.");
+			}
+		}
+		
+		return new ModelAndView("redirect:/login/crud/PedidoVenda");
+	}
+	
 }
 
 
