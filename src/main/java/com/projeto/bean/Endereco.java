@@ -1,6 +1,5 @@
 package com.projeto.bean;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,14 +10,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @SequenceGenerator(name = "sq_endereco", sequenceName = "sq_endereco")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Endereco implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class Endereco {
 	
 	private Integer id;
 	private String cidade;

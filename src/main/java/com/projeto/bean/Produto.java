@@ -1,6 +1,5 @@
 package com.projeto.bean;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -11,14 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @SequenceGenerator(name="sq_produto", sequenceName = "sq_produto")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Produto implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class Produto {
 	
 	private Integer id;
 	private String nome;

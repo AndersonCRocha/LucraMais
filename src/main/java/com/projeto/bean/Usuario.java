@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -20,6 +21,7 @@ public class Usuario {
 	private String senha;
 	private String nome;
 	private Boolean admin;
+	private Funcionario funcionario;
 	
 	public Usuario() {}
 	
@@ -48,6 +50,10 @@ public class Usuario {
 	public Boolean getAdmin() {
 		return admin;
 	}
+	@OneToOne
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -62,6 +68,9 @@ public class Usuario {
 	}
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 	
 	@Transient

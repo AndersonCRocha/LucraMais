@@ -1,7 +1,5 @@
 package com.projeto.bean;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,15 +13,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @SequenceGenerator(name="sq_pessoa", sequenceName = "sq_pessoa")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public abstract class Pessoa implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public abstract class Pessoa{
 	
 	protected Integer id;
 	protected String nome;

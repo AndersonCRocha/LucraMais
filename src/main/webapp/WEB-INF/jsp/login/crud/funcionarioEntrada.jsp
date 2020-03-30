@@ -57,6 +57,16 @@
 		    	</div>
 			</div>
 		</div>
+		<div class="row justify-content-between">
+			<div class="col-lg-6">
+				<label for="usuario.login">Login:</label>
+				<input type="text" name="usuario.login" class="form-control" placeholder="Login" value="${funcionario.usuario.login}" autocomplete="off" required>
+			</div>
+			<div class="col-lg-6">
+				<label for="usuario.senha">Senha:</label>
+				<input type="password" name="usuario.senha" class="form-control" placeholder="Senha" value="${funcionario.usuario.senha}" autocomplete="off" required>
+			</div>
+		</div>
 		<br>
 		<div class="barraBotoes">
 			<a class="btn btn-secondary" href="/login/crud/Funcionario"><i class="fa fa-reply"></i> Voltar para listagem</a>

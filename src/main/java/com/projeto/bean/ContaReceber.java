@@ -1,5 +1,6 @@
 package com.projeto.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ public class ContaReceber extends Conta{
 	private Cliente cliente;
 	private PedidoVenda pedidoVenda;
 	
-	private List<ItemPedidoVenda> listaProdutoItem;
+	private List<ItemPedidoVenda> listaProdutoItem = new ArrayList<ItemPedidoVenda>();
 
 	public ContaReceber() {
 	}

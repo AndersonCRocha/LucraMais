@@ -1,29 +1,25 @@
 package com.projeto.bean;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Transient;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @SequenceGenerator(name="sq_cargo", sequenceName = "sq_cargo")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Cargo implements Serializable{
+public class Cargo {
 
-	private static final long serialVersionUID = 1L;
-	
 	private Integer id;
 	private String descricao;
 	
-	private List<Funcionario> listaFuncionario;
+	private List<Funcionario> listaFuncionario = new ArrayList<Funcionario>();
+	private List<Permissao> listaPermissao = new ArrayList<Permissao>();
 	
 	public Cargo() {
 	}
@@ -36,10 +32,13 @@ public class Cargo implements Serializable{
 	public String getDescricao() {
 		return descricao;
 	}
-	@Transient
 	@OneToMany(mappedBy = "cargo")
 	public List<Funcionario> getListaFuncionario() {
 		return listaFuncionario;
+	}
+	@OneToMany(mappedBy = "cargo", fetch = FetchType.EAGER, orphanRemoval = true)
+	public List<Permissao> getListaPermissao() {
+		return listaPermissao;
 	}
 	public void setId(Integer id) {
 		this.id = id;
@@ -50,6 +49,8 @@ public class Cargo implements Serializable{
 	public void setListaFuncionario(List<Funcionario> listaFuncionario) {
 		this.listaFuncionario = listaFuncionario;
 	}
-	
+	public void setListaPermissao(List<Permissao> listaPermissao) {
+		this.listaPermissao = listaPermissao;
+	}
 	
 }

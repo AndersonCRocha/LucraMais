@@ -1,7 +1,7 @@
 package com.projeto.bean;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,15 +14,11 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.projeto.bean.enums.SituacaoCliente;
 import com.projeto.bean.enums.TipoPessoa;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Cliente extends Pessoa implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public class Cliente extends Pessoa {
 	
 	private TipoPessoa tipoPessoa;
 	private String rg;
@@ -31,7 +27,7 @@ public class Cliente extends Pessoa implements Serializable {
 	private SituacaoCliente situacaoCliente;
 	private Endereco endereco;
 	
-	private List<PedidoVenda> listaPedidoVenda;
+	private List<PedidoVenda> listaPedidoVenda = new ArrayList<PedidoVenda>();
 	
 	public Cliente() {
 	}

@@ -1,7 +1,5 @@
 package com.projeto.bean;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,14 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @SequenceGenerator(name="sq_produtoItem", sequenceName = "sq_produtoItem")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ItemPedidoVenda implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class ItemPedidoVenda {
 	
 	private Integer id;
 	private int quantidade;

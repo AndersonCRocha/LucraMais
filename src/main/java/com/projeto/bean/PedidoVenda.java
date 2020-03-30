@@ -1,8 +1,8 @@
 package com.projeto.bean;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -19,15 +19,11 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.projeto.bean.enums.FormaPagamento;
 
 @Entity
 @SequenceGenerator(name="sq_pedidoVenda", sequenceName = "sq_pedidoVenda")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class PedidoVenda implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class PedidoVenda {
 	
 	private Integer id;
 	private Cliente cliente;
@@ -37,7 +33,7 @@ public class PedidoVenda implements Serializable{
 	private FormaPagamento formaPagamento;
 	private ContaReceber contaReceber;
 	
-	private List<ItemPedidoVenda> listaProdutoItem;
+	private List<ItemPedidoVenda> listaProdutoItem = new ArrayList<ItemPedidoVenda>();
 
 	public PedidoVenda() {
 	}

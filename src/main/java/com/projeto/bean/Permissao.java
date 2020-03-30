@@ -1,9 +1,11 @@
 package com.projeto.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -11,21 +13,33 @@ import javax.persistence.SequenceGenerator;
 public class Permissao {
 
 	private Integer id;
-	private String uri;
+	private Cargo cargo;
+	private Tela tela;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_permissao")
 	public Integer getId() {
 		return id;
 	}
-	public String getUri() {
-		return uri;
+	@ManyToOne(fetch = FetchType.LAZY)
+	public Cargo getCargo() {
+		return cargo;
+	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	public Tela getTela() {
+		return tela;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public void setUri(String uri) {
-		this.uri = uri;
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
 	}
+	public void setTela(Tela tela) {
+		this.tela = tela;
+	}
+	
+	
+	
 	
 }

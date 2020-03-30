@@ -5,13 +5,16 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.projeto.bean.Cargo;
 import com.projeto.bean.Permissao;
 import com.projeto.repository.PermissaoRepository;
 
 @Service
+@Transactional
 public class PermissaoService {
-
+	
 	@Autowired
 	private PermissaoRepository permissaoRepository;
 	
@@ -33,5 +36,13 @@ public class PermissaoService {
 	
 	public void deleteById(Integer id) {
 		permissaoRepository.deleteById(id);
+	}
+	
+	public List<Permissao> saveAll(List<Permissao> permissoes) {
+		return permissaoRepository.saveAll(permissoes);
+	}
+	
+	public void deleteByCargo(Cargo cargo) {
+		permissaoRepository.deleteByCargo(cargo);
 	}
 }

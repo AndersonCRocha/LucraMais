@@ -1,7 +1,7 @@
 package com.projeto.bean;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,27 +9,23 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Funcionario extends Pessoa implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class Funcionario extends Pessoa{
 	
 	private String rg;
 	private String pis;
 	private Cargo cargo;
 	private Endereco endereco;
 	private BigDecimal salario;
+	private Usuario usuario;
 	
-	private List<PedidoVenda> listaPedidoVenda;
+	private List<PedidoVenda> listaPedidoVenda = new ArrayList<PedidoVenda>();
 	
 	public Funcionario() {
 	}
@@ -58,7 +54,10 @@ public class Funcionario extends Pessoa implements Serializable{
 	public BigDecimal getSalario() {
 		return salario;
 	}
-	@Transient
+	@OneToOne(mappedBy = "funcionario", orphanRemoval = true, fetch = FetchType.EAGER)
+	public Usuario getUsuario() {
+		return usuario;
+	}
 	@OneToMany(mappedBy = "funcionario")
 	public List<PedidoVenda> getListaPedidoVenda() {
 		return listaPedidoVenda;
@@ -77,5 +76,11 @@ public class Funcionario extends Pessoa implements Serializable{
 	}
 	public void setSalario(BigDecimal salario) {
 		this.salario = salario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public void setListaPedidoVenda(List<PedidoVenda> listaPedidoVenda) {
+		this.listaPedidoVenda = listaPedidoVenda;
 	}
 }

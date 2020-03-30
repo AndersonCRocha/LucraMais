@@ -1,6 +1,6 @@
 package com.projeto.bean;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,19 +15,14 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Fornecedor extends Pessoa implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class Fornecedor extends Pessoa {
 	
 	private String cnpj;
 	
-	private List<MateriaPrima> listaMateriaPrima;
-	private List<Produto> listaProduto;
-	private List<ContaPagar> listaContaPagar;
+	private List<MateriaPrima> listaMateriaPrima = new ArrayList<MateriaPrima>();
+	private List<Produto> listaProduto = new ArrayList<Produto>();
+	private List<ContaPagar> listaContaPagar = new ArrayList<ContaPagar>();
 	
 	public Fornecedor() {
 	}

@@ -40,7 +40,6 @@
 						    <span><i class="fa fa-plus"></i> Cadastros</span>
 						</button>
 						<div class="dropdown-menu cadastros" aria-labelledby="dropdownCadastro">
-							<a class="dropdown-item" href="/login/crud/Usuario"><i class="fa fa-user"></i> Usuários </a>
 							<a class="dropdown-item" href="/login/crud/Funcionario"><i class="fa fa-briefcase"></i> Funcionários</a>
 	    					<a class="dropdown-item" href="/login/crud/Cliente"><i class="fa fa-group"></i> Clientes</a>
 	    					<a class="dropdown-item" href="/login/crud/Produto"><i class="fa fa-coffee"></i> Produtos</a>
@@ -66,7 +65,8 @@
 						    <span><i class="fa fa-cogs"></i> Configurações</span>
 						</button>
 						<div class="dropdown-menu configs" aria-labelledby="dropdownConfigs">
-							<a class="dropdown-item" href="/login/crud/Permissao"><i class="fa fa-unlock"></i> Permissões</a>
+							<c:if test="${usuarioLogado.admin}"><a class="dropdown-item" href="/login/crud/Usuario"><i class="fa fa-user"></i> Usuários </a></c:if>
+							<a class="dropdown-item" href="/login/crud/Tela"><i class="fa fa-clone"></i> Telas </a>
 							<a class="dropdown-item" href="/login/crud/Cargo"><i class="fa fa-sitemap"></i> Cargos</a>
 						</div>
 					</div>
