@@ -2,6 +2,7 @@ package com.projeto.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,7 +51,7 @@ public class Usuario {
 	public Boolean getAdmin() {
 		return admin;
 	}
-	@OneToOne
+	@OneToOne(mappedBy = "usuario", fetch = FetchType.EAGER)
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}

@@ -21,6 +21,7 @@
         <script type="text/javascript" src="/js/jquery.js"></script>
         <script type="text/javascript" src="/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/js/default.js"></script>
+        <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
 
         <title>Lucra+</title>
     </head>

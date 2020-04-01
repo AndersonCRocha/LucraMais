@@ -5,32 +5,46 @@
 <form action="/login/crud/Produto/salvar" method="POST" accept-charset="utf-8">
 	<div class="form-group">
 		<input type="hidden" name="id" value="${produto.id}">
-		<label for="nome">Nome:</label>
-		<input type="text" name="nome" class="form-control" placeholder="Nome" value="${produto.nome}" autocomplete="off" required>
-		<label for="login">Unidade de medida:</label>
-		<input type="text" name="unidadeMedida" class="form-control" placeholder="Unidade de medida" value="${produto.unidadeMedida}" autocomplete="off" required>
-		<label for="descricaoNutricional">Descrição nutricional:</label>
-		<textarea name="descricaoNutricional" class="form-control" rows="3" required>${produto.descricaoNutricional}</textarea>
-		<label for="precoVenda">Preço de venda:</label>
-		<div class="input-group">
-	        <div class="input-group-prepend">
-	        	<div class="input-group-text">R$</div>
-	        </div>
-			<input type="number" name="precoVenda" class="form-control" placeholder="0.00" value="${produto.precoVenda}" step="0.05" required >
-     	</div>
-		<label for="fornecedor">Fornecedor:</label>
-		<select name="fornecedor" class="form-control" value="${produto.fornecedor.id}" required>
-			<c:forEach items="${listaFornecedor}" var="fornecedor">
-				<option value="${fornecedor.id}">${fornecedor.nome}</option>
-			</c:forEach>
-		</select>
-		<label for="precoCompra">Preço de compra:</label>
-		<div class="input-group">
-	        <div class="input-group-prepend">
-	        	<div class="input-group-text">R$</div>
-	        </div>
-			<input type="number" name="precoCompra" class="form-control" placeholder="0.00" value="${produto.precoCompra}" step="0.05" required>
-     	</div>
+		<div class="row">
+			<div class="col-lg-9">
+				<label for="nome">Nome:</label>
+				<input type="text" name="nome" class="form-control" placeholder="Nome" value="${produto.nome}" autocomplete="off" required>
+			</div>
+			<div class="col-lg-3">
+				<label for="login">Unidade de medida:</label>
+				<input type="text" name="unidadeMedida" class="form-control" placeholder="Unidade de medida" value="${produto.unidadeMedida}" autocomplete="off" required>
+			</div>
+			<div class="col-lg-12">
+				<label for="descricaoNutricional">Descrição nutricional:</label>
+				<textarea name="descricaoNutricional" class="form-control" rows="3" required>${produto.descricaoNutricional}</textarea>
+			</div>
+			<div class="col-lg-4">
+				<label for="fornecedor">Fornecedor:</label>
+				<select name="fornecedor" class="form-control" value="${produto.fornecedor.id}" required>
+					<c:forEach items="${listaFornecedor}" var="fornecedor">
+						<option value="${fornecedor.id}">${fornecedor.nome}</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div class="col-lg-4">
+				<label for="precoCompra">Preço de compra:</label>
+				<div class="input-group">
+			        <div class="input-group-prepend">
+			        	<div class="input-group-text">R$</div>
+			        </div>
+					<input type="text" name="precoCompra" class="form-control money" placeholder="00.00" value="${produto.precoCompra}" required>
+		     	</div>
+	     	</div>
+			<div class="col-lg-4">
+				<label for="precoVenda">Preço de venda:</label>
+				<div class="input-group">
+			        <div class="input-group-prepend">
+			        	<div class="input-group-text">R$</div>
+			        </div>
+					<input type="text" name="precoVenda" class="form-control money" placeholder="00.00" value="${produto.precoVenda}" required >
+		     	</div>
+	     	</div>
+		</div>
 		<br>
 		<div class="barraBotoes">
 			<a class="btn btn-secondary" href="/login/crud/Produto"><i class="fa fa-reply"></i> Voltar para listagem</a>

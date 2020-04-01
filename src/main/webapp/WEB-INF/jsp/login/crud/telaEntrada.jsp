@@ -14,10 +14,16 @@
 <form action="/login/crud/Tela/salvar" method="POST" accept-charset="utf-8">
 	<div class="form-group">
 		<input type="hidden" name="id" value="${tela.id}">
-		<label for="modulo">Módulo:</label>
-		<input type="text" name="modulo" class="form-control" placeholder="Usuário" value="${tela.modulo}" autocomplete="off" required>
-		<label for="uri">Uri:</label>
-		<input type="text" name="uri" class="form-control" placeholder="/login/crud/Usuario" value="${tela.uri}" autocomplete="off" required>
+		<div class="row">
+			<div class="col-lg-5">
+				<label for="modulo">Módulo:</label>
+				<input type="text" name="modulo" class="form-control" placeholder="Usuário" value="${tela.modulo}" autocomplete="off" required>
+			</div>
+			<div class="col-lg-7">
+				<label for="uri">Uri:</label>
+				<input type="text" name="uri" class="form-control" placeholder="/login/crud/Usuario" value="${tela.uri}" autocomplete="off" required>
+			</div>
+		</div>
 		<br>
 		<div class="barraBotoes">
 			<a class="btn btn-secondary" href="/login/crud/Tela"><i class="fa fa-reply"></i> Voltar para listagem</a>

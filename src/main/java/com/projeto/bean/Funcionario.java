@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Funcionario extends Pessoa{
@@ -31,7 +30,6 @@ public class Funcionario extends Pessoa{
 	}
 	
 	@NotNull(message = "O RG não pode ser nulo")
-	@Length(max = 10, min = 10, message = "O RG deve conter 10 números")
 	@NotBlank(message = "O RG não pode ser em branco")
 	@Column(nullable = false, unique = true)
 	public String getRg() {
@@ -54,7 +52,7 @@ public class Funcionario extends Pessoa{
 	public BigDecimal getSalario() {
 		return salario;
 	}
-	@OneToOne(mappedBy = "funcionario", orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public Usuario getUsuario() {
 		return usuario;
 	}

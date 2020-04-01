@@ -7,9 +7,11 @@
 <form action="/login/crud/Cliente/salvar" method="POST" accept-charset="utf-8">
 	<div class="form-group">
 		<input type="hidden" name="id" value="${cliente.id}">
-		<label for="nome">Nome completo:</label>
-		<input type="text" name="nome" class="form-control" placeholder="Nome completo" value="${cliente.nome}" autocomplete="off" required>
-		<div class="row justify-content-between">
+		<div class="row">
+			<div class="col-lg-6">
+				<label for="nome">Nome completo:</label>
+				<input type="text" name="nome" class="form-control" placeholder="Nome completo" value="${cliente.nome}" autocomplete="off" required>
+			</div>
 			<div class="col-lg-6">
 				<label for="login">Email:</label>
 				<div class="input-group">
@@ -19,13 +21,11 @@
 					<input type="email" name="email" class="form-control" placeholder="Email" value="${cliente.email}" autocomplete="off" required>
 		     	</div>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-3">
 				<label for="telefone">Telefone:</label>
-				<input type="tel" name="telefone" class="form-control" placeholder="Apenas números: 77999998888" value="${cliente.telefone}" pattern="[0-9]{11}" maxlength="11" autocomplete="off" required>
+				<input type="text" name="telefone" class="form-control phone" placeholder="(XX) XXXXX-XXXX" value="${cliente.telefone}" autocomplete="off" required>
 			</div>
-		</div>
-		<div class="row justify-content-between">
-			<div class="col-lg-4">
+			<div class="col-lg-4 offset-1">
 				<label>Tipo de pessoa</label><br>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" name="tipoPessoa" id="pessoaFisica" value="PESSOA_FISICA" ${cliente.tipoPessoa == TipoPessoa.PESSOA_FISICA ? 'checked' : empty cliente ? 'checked' : ''}>
@@ -38,28 +38,26 @@
 			</div>
 			<div class="col-lg-4" id="divCPF">
 				<label for="cpf">CPF:</label>
-				<input type="text" name="cpf" class="form-control" placeholder="CPF" value="${cliente.cpf}" autocomplete="off" >
+				<input type="text" name="cpf" class="form-control cpf" placeholder="XXX.XXX.XXX-XX" value="${cliente.cpf}" autocomplete="off" >
 			</div>
 			<div class="col-lg-4" id="divCNPJ"  style="display:none;">
 				<label for="cnpj">CNPJ:</label>
-				<input type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="${cliente.cnpj}" autocomplete="off">
+				<input type="text" name="cnpj" class="form-control cnpj" placeholder="XX.XXX.XXX/XXXX-XX" value="${cliente.cnpj}" autocomplete="off">
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-3">
 				<label for="rg">RG:</label>
-				<input type="text" name="rg" class="form-control" placeholder="RG" value="${cliente.rg}" autocomplete="off" required>
+				<input type="text" name="rg" class="form-control rg" placeholder="XX.XXX.XXX-XX" value="${cliente.rg}" autocomplete="off" required>
 			</div>
-		</div>
-		<div class="row justify-content-between">
-			<div class='col-lg-6'>
+			<div class='col-lg-3'>
 				<label for="limiteCredito">Limite de crédito:</label>
 				<div class="input-group">
 			        <div class="input-group-prepend">
 			        	<div class="input-group-text">R$</div>
 			        </div>
-					<input type="number" name="limiteCredito" class="form-control" placeholder="00.00" value="${cliente.limiteCredito}" autocomplete="off" required>
+					<input type="text" name="limiteCredito" class="form-control money" placeholder="00.00" value="${cliente.limiteCredito}" autocomplete="off" required>
 		     	</div>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-5">
 				<label>Situação do cliente</label><br>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoRuim" value="RUIM" ${cliente.situacaoCliente == SituacaoCliente.RUIM ? 'checked' : ''}>

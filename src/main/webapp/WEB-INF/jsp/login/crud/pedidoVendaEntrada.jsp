@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="com.projeto.bean.enums.TipoPessoa"%>
 
-<h1>Cadastro de pedido de venda</h1>
+<h1>Pedido de venda</h1>
 
 <c:if test="${empty pedidoVenda}">
 	<div class="row" id="divSelectCliente">

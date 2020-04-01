@@ -5,9 +5,11 @@
 <form action="/login/crud/Funcionario/salvar" method="POST" accept-charset="utf-8">
 	<div class="form-group">
 		<input type="hidden" name="id" value="${funcionario.id}">
-		<label for="nome">Nome completo:</label>
-		<input type="text" name="nome" class="form-control" placeholder="Nome completo" value="${funcionario.nome}" autocomplete="off" required>
-		<div class="row justify-content-between">
+		<div class="row">
+			<div class="col-lg-6">
+				<label for="nome">Nome completo:</label>
+				<input type="text" name="nome" class="form-control" placeholder="Nome completo" value="${funcionario.nome}" autocomplete="off" required>
+			</div>
 			<div class="col-lg-6">
 				<label for="login">Email:</label>
 				<div class="input-group">
@@ -17,27 +19,23 @@
 					<input type="email" name="email" class="form-control" placeholder="Email" value="${funcionario.email}" autocomplete="off" required>
 		     	</div>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-3">
 				<label for="telefone">Telefone:</label>
-				<input type="tel" name="telefone" class="form-control" placeholder="Apenas números: 77999998888" value="${funcionario.telefone}" pattern="[0-9]{11}" maxlength="11" autocomplete="off" required>
+				<input type="text" name="telefone" class="form-control phone" placeholder="(XX) XXXXX-XXXX" value="${funcionario.telefone}" autocomplete="off" required>
 			</div>
-		</div>
-		<div class="row justify-content-between">
-			<div class="col-lg-6">
+			<div class="col-lg-3">
 				<label for="cpf">CPF:</label>
-				<input type="text" name="cpf" class="form-control" placeholder="CPF" value="${funcionario.cpf}" autocomplete="off" required>
+				<input type="text" name="cpf" class="form-control cpf" placeholder="XXX.XXX.XXX-XX" value="${funcionario.cpf}" autocomplete="off" required>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-3">
 				<label for="rg">RG:</label>
-				<input type="text" name="rg" class="form-control" placeholder="RG" value="${funcionario.rg}" autocomplete="off" required>
+				<input type="text" name="rg" class="form-control rg" placeholder="XX.XXX.XXX-XX" value="${funcionario.rg}" autocomplete="off" required>
 			</div>
-		</div>
-		<div class="row justify-content-between">
-			<div class="col-lg-6">
+			<div class="col-lg-3">
 				<label for="pis">PIS:</label>
-				<input type="text" name="pis" class="form-control" placeholder="PIS" value="${funcionario.pis}" autocomplete="off" required>
+				<input type="text" name="pis" class="form-control pis" placeholder="XXX.XXXXX.XX-X" value="${funcionario.pis}" autocomplete="off" required>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-3">
 				<label for="cargo">Cargo:</label>
 				<select name="cargo" class="form-control" value="${funcionario.cargo.id}" required>
 					<c:forEach items="${listaCargo}" var="cargo">
@@ -45,28 +43,37 @@
 					</c:forEach>
 				</select>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-3">
 				<label for="salario">Salário:</label>
 				<div class="input-group">
 			        <div class="input-group-prepend">
 			        	<div class="input-group-text">R$</div>
 			        </div>
-					<input type="number" name="salario" class="form-control" placeholder="00.00" value="${funcionario.salario}" step="0.05" required >
+					<input type="text" name="salario" class="form-control money" placeholder="000.00" value="${funcionario.salario}" required >
 		    	</div>
 			</div>
 		</div>
-		<div class="row justify-content-between">
-			<div class="col-lg-6">
-				<label for="usuario.login">Login:</label>
-				<input type="text" name="usuario.login" class="form-control" placeholder="Login" value="${funcionario.usuario.login}" autocomplete="off" required>
-			</div>
-			<div class="col-lg-6">
-				<label for="usuario.senha">Senha:</label>
-				<input type="password" name="usuario.senha" class="form-control" placeholder="Senha" value="${funcionario.usuario.senha}" autocomplete="off" required>
-			</div>
-		</div>
+		<c:choose>
+			<c:when test="${empty funcionario.id}">
+				<div class="row justify-content-between">
+					<div class="col-lg-6">
+						<label for="usuario.login">Login:</label>
+						<input type="text" name="usuario.login" class="form-control" placeholder="Login" value="${funcionario.usuario.login}" autocomplete="off" required>
+					</div>
+					<div class="col-lg-3">
+						<label for="usuario.senha">Senha:</label>
+						<input type="password" name="usuario.senha" class="form-control" placeholder="Senha" value="${funcionario.usuario.senha}" autocomplete="off" required>
+					</div>
+					<div class="col-lg-2 " style="padding: 0;">
+						<label for="admin">Administrador:</label>
+						<input type="checkbox" name="usuario.admin" class="form-check" value="${funcionario.usuario.admin}" ${funcionario.usuario.admin == true ? 'checked' : ''}>
+					</div>		
+				</div>
+			</c:when>
+			<c:otherwise>
+				<input type="hidden" name="usuario.id" value="${funcionario.usuario.id}">
+			</c:otherwise>
+		</c:choose>
 		<br>
 		<div class="barraBotoes">
 			<a class="btn btn-secondary" href="/login/crud/Funcionario"><i class="fa fa-reply"></i> Voltar para listagem</a>

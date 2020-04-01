@@ -12,8 +12,6 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-
 import com.projeto.bean.enums.SituacaoCliente;
 import com.projeto.bean.enums.TipoPessoa;
 
@@ -36,7 +34,6 @@ public class Cliente extends Pessoa {
 		return tipoPessoa;
 	}
 	@NotNull(message = "O RG não pode ser nulo")
-	@Length(max = 10, min = 10, message = "O RG deve conter 10 números")
 	@NotBlank(message = "O RG não pode ser em branco")
 	@Column(nullable = false, unique = true)
 	public String getRg() {

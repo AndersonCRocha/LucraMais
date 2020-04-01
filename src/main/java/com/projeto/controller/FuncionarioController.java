@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.projeto.bean.Funcionario;
 import com.projeto.service.CargoService;
 import com.projeto.service.FuncionarioService;
+import com.projeto.service.UsuarioService;
 
 @Controller
 @RequestMapping(value="/login/crud/Funcionario")
@@ -25,6 +26,8 @@ public class FuncionarioController {
 	private FuncionarioService funcionarioService;
 	@Autowired
 	private CargoService cargoService;
+	@Autowired
+	private UsuarioService usuarioService;
 	
 	@GetMapping("criar")
 	public ModelAndView criar(HttpServletRequest request, @RequestParam(name = "id", required = false)Integer id) {
@@ -51,6 +54,11 @@ public class FuncionarioController {
 	@PostMapping("salvar")
 	public ModelAndView salvar(Funcionario funcionario, RedirectAttributes redirectAttributes)  {
 		try {
+			if(funcionario.getId() == null) {
+				funcionario.getUsuario().setNome(funcionario.getNome());
+			}else {
+				funcionario.setUsuario(usuarioService.findById(funcionario.getUsuario().getId()).get());
+			}
 			funcionarioService.save(funcionario);
 			redirectAttributes.addFlashAttribute("sucesso", "Funcionario salvo com sucesso");
 			return new ModelAndView("redirect:/login/crud/Funcionario");
