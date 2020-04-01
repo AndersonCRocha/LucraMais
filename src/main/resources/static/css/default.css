@@ -44,7 +44,9 @@ a:link{
 	text-decoration: none;
 }
 .content{
-
+	height: 100%;
+	width: 100%;
+	position: relative;
 }
 .barraBotoes{
 	float:right;
@@ -147,4 +149,34 @@ label{
 *[disabled]{
 	cursor:no-drop;
 }
-
+.kpiIndex{
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1000px;
+	margin: 0 auto;
+	align-items: center;	
+}
+.kpiIndex div{
+	flex: 1 1 300px;
+	background-color: black;
+	color: white;
+	margin: 10px;
+	height: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.8;
+	transition: all .4s ease;
+}
+.kpiIndex div:hover{
+	transform: scale(1.5);
+	border-radius: 30px;
+	opacity:1;
+	
+}
+.kpiIndex div span{
+	text-align: center;
+}
+.bemvindo{
+	margin-bottom: 50px;
+}

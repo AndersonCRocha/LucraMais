@@ -52,7 +52,7 @@ public class Funcionario extends Pessoa{
 	public BigDecimal getSalario() {
 		return salario;
 	}
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	public Usuario getUsuario() {
 		return usuario;
 	}
