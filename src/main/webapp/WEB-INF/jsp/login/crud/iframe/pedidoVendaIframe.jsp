@@ -134,7 +134,7 @@
 		</div>
 		<div class="controlesPV">
 			<div>
-				<button type="button" title="Remover item (del)" class="btn btn-danger" onclick="removerItem();"><i class="fa fa-plus"></i> Remover</button>
+				<button type="button" title="Remover item (del)" class="btn btn-danger" onclick="removerItem();"><i class="fa fa-trash"></i> Remover</button>
 				<button type="button" title="Adicionar item (alt + N)" class="btn btn-success" data-toggle="modal" data-target="#modalProdutos"><i class="fa fa-plus"></i> Adicionar</button>
 			</div>
 			<div class="barraBotoes">
@@ -164,7 +164,7 @@
 										<th class="col-1">Un.</th>
 										<th class="col-5">Nome</th>
 										<th class="col-4">Fornecedor</th>
-										<th class="col-2">Valor</th>
+										<th class="col-2 textoDireita">Valor</th>
 									</tr>
 								</thead>
 								<tbody class="resultadoPesquisa">	

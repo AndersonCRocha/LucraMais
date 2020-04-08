@@ -29,7 +29,7 @@ public class LoginController {
 			HttpSession session = request.getSession();
 			usuario = usuarioService.findByLogin(usuario.getLogin());
 			session.setAttribute("usuarioLogado", usuario);
-			session.setMaxInactiveInterval(1800);
+			session.setMaxInactiveInterval(3600);
 			response.sendRedirect((String)session.getAttribute("urlParaAutenticar"));
 			return null;
 		}else {

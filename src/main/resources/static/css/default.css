@@ -216,7 +216,7 @@ legend{
 .tabelaProdutos{
 	margin:-3px;
 }
-.tabelaProdutos th, .tabelaProdutos td{
+.tabelaProdutos th, .tabelaProdutos td, #modalProdutos th, #modalProdutos td{
 	padding-left: 15px;
 	padding-right: 15px;
 }

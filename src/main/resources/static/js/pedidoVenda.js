@@ -71,9 +71,9 @@ $("#produto").keyup(function( event ){
 													'<input type="hidden" class="descricao" value="'+retorno[i].descricaoNutricional+'">'+
 													retorno[i].fornecedor.nome+
 												'</td>'+
-												'<td class="col-2"> R$ '+
+												'<td class="col-2 textoDireita"> R$ '+
 													'<input type="hidden" class="precoVenda" value="'+retorno[i].precoVenda+'">'+
-													retorno[i].precoVenda+
+													retorno[i].precoVenda.toFixed(2)+
 												'</td>'+
 											'</tr>';
 						$('.resultadoPesquisa').append(linhaTabela);
@@ -99,17 +99,25 @@ $('#modalProdutos').keydown(function(event){
 		if($('.resultadoPesquisa .linhaResultado').length > 0){
 			if( $('.resultadoPesquisa .active').length == 0 ){
 				$('.resultadoPesquisa tr:first-child').addClass("active").focus();
+				$('.tabelaResultados').scrollTop(0);
 			}else{
+				var height = $('.resultadoPesquisa tr:first-child').height();
 				if(key == 40 || key == 39){
 					var anterior = $('.active');
-					anterior.next().addClass("active");
-					anterior.removeClass("active");
-					$('#descricao').html($('.active .descricao').val());
+					if($(anterior).next().length != 0){
+						anterior.next().addClass("active");
+						anterior.removeClass("active");
+						$('#descricao').html($('.active .descricao').val());
+						$('.tabelaResultados').scrollTop($('.tabelaResultados').scrollTop()+height);
+					}
 				}else{
 					var proxima = $('.active');
-					proxima.prev().addClass("active");
-					proxima.removeClass("active");
-					$('#descricao').html($('.active .descricao').val());
+					if($(proxima).prev().length != 0){
+						proxima.prev().addClass("active");
+						proxima.removeClass("active");
+						$('#descricao').html($('.active .descricao').val());
+						$('.tabelaResultados').scrollTop($('.tabelaResultados').scrollTop()-height);
+					}
 				}
 			}
 		}
@@ -137,6 +145,7 @@ function criarLinhaDoPedido(id, nome, unidadeMedida, qtd, precoUnit){
 				  		'</tr>';
 	
 	$('#produtos').append(linhaPedido);
+	$('.itemPedido').click(clickLinhaResultado);
 	contador++;
 	atualizaDadosGerais();
 }
@@ -146,19 +155,25 @@ function adicionarProdutoNoPedido(){
 		
 	if(selecionado.length == 1){
 		if(!produtoJaAdicionado()){
-			var qtd = parseInt(prompt("Quantas unidades quer adicionar desse produto?"));
-			if(isNaN(qtd)){
-				alert("Digite apenas n\u00fameros!")
-			}else{
-				var id = $('.active .id').val();
-				var nome = $('.active .nome').val();
-				var unidadeMedida = $('.active .unidadeMedida').val();
-				var precoUnit = $('.active .precoVenda').val();
+			var qtdString = prompt("Quantas unidades quer adicionar desse produto?");
+			if(qtdString != "" && qtdString != null){
+				var qtd = parseInt(qtdString);
 				
-				criarLinhaDoPedido(id, nome, unidadeMedida, qtd, precoUnit);
+				if(isNaN(qtd)){
+					alert("Digite apenas números!")
+				}else if(qtd >= 1){
+					var id = $('.active .id').val();
+					var nome = $('.active .nome').val();
+					var unidadeMedida = $('.active .unidadeMedida').val();
+					var precoUnit = $('.active .precoVenda').val();
+					
+					criarLinhaDoPedido(id, nome, unidadeMedida, qtd, precoUnit);
+				}else{
+					alert("A quantidade deve ser maior ou igual a 1.");
+				}
 			}
 		}else{
-			alert("Este produto j\u00e1 foi adicionado ao pedido");
+			alert("Este produto já foi adicionado ao pedido");
 		}
 	}else {
 		alert("Selecione um produto para adicionar ao pedido.");
@@ -224,15 +239,24 @@ $(window).keydown(function(event){
 			if($('#produtos .itemPedido').length > 0){
 				if( $('#produtos .active').length == 0 ){
 					$('#produtos tr:first-child').addClass("active").focus();
+					$('#produtos').scrollTop(0);
 				}else{
+					var height = $('#produtos tr:first-child').height();
 					if(key == 40 || key == 39){
 						var anterior = $('#produtos .active');
-						anterior.next().addClass("active");
-						anterior.removeClass("active");
+						if($(anterior).next().length != 0){
+							anterior.next().addClass("active");
+							anterior.removeClass("active");
+							$('.fieldsetProdutos').scrollTop($('.fieldsetProdutos').scrollTop()+height);
+
+						}
 					}else{
 						var proxima = $('#produtos .active');
-						proxima.prev().addClass("active");
-						proxima.removeClass("active");
+						if($(proxima).prev().length != 0){
+							proxima.prev().addClass("active");
+							proxima.removeClass("active");
+							$('.fieldsetProdutos').scrollTop($('.fieldsetProdutos').scrollTop()-height);
+						}
 					}
 				}
 			}
