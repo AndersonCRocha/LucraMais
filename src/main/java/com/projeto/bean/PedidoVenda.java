@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import com.projeto.bean.enums.FormaPagamento;
 
@@ -37,21 +34,26 @@ public class PedidoVenda {
 
 	public PedidoVenda() {
 	}
+	public PedidoVenda(Integer id) {
+		this.id = id;
+	}
+	
+	public PedidoVenda(Cliente cliente, Funcionario funcionario, Date dataVenda) {
+		this.cliente = cliente;
+		this.funcionario = funcionario;
+		this.dataVenda = dataVenda;
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_pedidoVenda")
 	public Integer getId() {
 		return id;
 	}
-	@NotNull(message = "O cliente não pode ser nulo")
-	@NotBlank(message = "O cliente não pode ser em branco")
 	@JoinColumn(nullable = false)
 	@ManyToOne(fetch = FetchType.LAZY)
 	public Cliente getCliente() {
 		return cliente;
 	}
-	@NotNull(message = "O vendedor não pode ser nulo")
-	@NotBlank(message = "O vendedor não pode ser em branco")
 	@JoinColumn(nullable = false)
 	@ManyToOne(fetch = FetchType.LAZY)
 	public Funcionario getFuncionario() {
@@ -63,9 +65,6 @@ public class PedidoVenda {
 	public Date getDataVenda() {
 		return dataVenda;
 	}
-	@NotNull(message = "A forma de pagamento não pode ser nula")
-	@NotBlank(message = "A forma de pagament não pode ser em branco")
-	@Column(nullable = false)
 	public FormaPagamento getFormaPagamento() {
 		return formaPagamento;
 	}
@@ -73,7 +72,7 @@ public class PedidoVenda {
 	public ContaReceber getContaReceber() {
 		return contaReceber;
 	}
-	@OneToMany(mappedBy = "pedidoVenda")
+	@OneToMany(mappedBy = "pedidoVenda", orphanRemoval = true, fetch = FetchType.EAGER)
 	public List<ItemPedidoVenda> getListaProdutoItem() {
 		return listaProdutoItem;
 	}

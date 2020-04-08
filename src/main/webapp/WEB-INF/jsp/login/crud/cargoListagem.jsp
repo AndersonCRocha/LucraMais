@@ -26,8 +26,8 @@
 			<tr class="row">
 				<td class="col-10">${cargo.descricao}</td>
 				<td class="col-2 colunaAcao">
-					<a class="btn btn-secondary" href="/login/crud/Cargo/criar?id=${cargo.id}" title="Editar"><i class="fa fa-pencil"></i></a>
-					<button class="btn btn-danger" onclick="excluirCargo(${cargo.id});" title="Excluir"><i class="fa fa-trash"></i></button>
+					<a class="btn btn-secondary btn-sm" href="/login/crud/Cargo/criar?id=${cargo.id}" title="Editar"><i class="fa fa-pencil"></i></a>
+					<button class="btn btn-danger btn-sm" onclick="excluirCargo(${cargo.id});" title="Excluir"><i class="fa fa-trash"></i></button>
 				</td>
 			</tr>
 		</c:forEach>

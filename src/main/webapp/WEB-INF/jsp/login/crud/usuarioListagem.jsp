@@ -30,7 +30,9 @@
 				<td class="col-4">${usuario.login}</td>
 				<td class="col-1">${usuario.admin == true ? "SIM" : "NÃO"}</td>
 				<td class="col-2 colunaAcao">
-<%-- 					<button class="btn btn-danger" onclick="excluirUsuario(${usuario.id});" title="Excluir"><i class="fa fa-trash"></i></button> --%>
+					<c:if test="${empty usuario.funcionario && !usuario.admin}">
+						<button class="btn btn-danger btn-sm" onclick="excluirUsuario(${usuario.id});" title="Excluir"><i class="fa fa-trash"></i></button>
+					</c:if>
 				</td>
 			</tr>
 		</c:forEach>

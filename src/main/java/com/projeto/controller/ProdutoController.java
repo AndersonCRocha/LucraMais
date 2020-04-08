@@ -1,5 +1,6 @@
 package com.projeto.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -75,5 +77,10 @@ public class ProdutoController {
 		}
 		
 		return new ModelAndView("redirect:/login/crud/Produto");
+	}
+	
+	@PostMapping("listarParaPV")
+	public @ResponseBody List<Produto> listarParaPV(@RequestParam(name = "nome") String nome){
+		return produtoService.listarParaPV(nome);
 	}
 }

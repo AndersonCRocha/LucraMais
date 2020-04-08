@@ -146,9 +146,14 @@ label{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
-*[disabled]{
+a[disabled], button[disabled]{
 	cursor:no-drop;
 }
+
+input[disabled]{
+	cursor: text;
+}
+
 .kpiIndex{
 	display: flex;
 	flex-wrap: wrap;
@@ -172,11 +177,125 @@ label{
 	transform: scale(1.5);
 	border-radius: 30px;
 	opacity:1;
-	
 }
 .kpiIndex div span{
 	text-align: center;
 }
 .bemvindo{
 	margin-bottom: 50px;
+}
+#iframePedidoVenda{
+	width: 100%;
+	height: 100%;
+	display: none;
+	border:0;
+	overflow:hidden;
+}
+
+legend{
+	border:1px solid #6c6c6c;
+	padding:2px 10px 2px 10px;
+	font-weight: bold;
+}
+.fieldsetProdutos{
+	margin: 20px 0;
+	height: 40vh;
+	max-height: 40vh;
+	padding-top:0;	
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+@media(max-width: 600px){
+	.fieldsetProdutos{
+		overflow-x: scroll;
+	}
+}
+.fieldsetProdutos legend {
+	text-align: center;
+}
+.tabelaProdutos{
+	margin:-3px;
+}
+.tabelaProdutos th, .tabelaProdutos td{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.controlesPV{
+	display:flex;
+	justify-content: space-between;
+}
+#teste{
+	height: 80%;
+	overflow: scroll;
+}
+.divCarregamento{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	opacity: 0.3;
+	background-color: black;
+	display: none;
+	color: white;
+	justify-content: center;
+	align-items: center;
+}
+
+.carregando{
+	color:white;
+	font-size: 60px;
+	font-weight: bold;
+	opacity: 1
+}
+.descricaoProduto{
+	min-height: 200px;
+	padding:10px;
+	word-break: break-word;
+}
+.tabelaResultados{
+	overflow:scroll;
+	max-height: 200px;
+}
+.active{
+	background-color: #c3e0ff !important;
+}
+.pesquisaProduto{
+	text-transform: uppercase;
+}
+.qtd{
+	max-height: 24px;
+	font-size: 16px
+}
+.formasDePagamento{
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	align-items: center;
+}
+.divFormaPagamento{
+	flex: 1 1 100px;
+	background-color: #ccc;
+	margin: 10px;
+	height: 100px;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+}
+.divFormaPagamento:hover{
+	background-color: #a6a6a6;
+	cursor: pointer;
+}
+.textoDireita{
+	text-align: right;
+}
+.select2-selection__rendered {
+    line-height: 37px !important;
+}
+.select2-container .select2-selection--single {
+    height: 37px !important;
+}
+.select2-selection__arrow {
+    height: 37px !important;
 }

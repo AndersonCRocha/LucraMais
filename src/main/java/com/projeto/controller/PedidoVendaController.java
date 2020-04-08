@@ -1,5 +1,6 @@
 package com.projeto.controller;
 
+import java.sql.Date;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.projeto.bean.Cliente;
+import com.projeto.bean.Funcionario;
+import com.projeto.bean.ItemPedidoVenda;
 import com.projeto.bean.PedidoVenda;
+import com.projeto.bean.Usuario;
 import com.projeto.service.ClienteService;
+import com.projeto.service.FuncionarioService;
+import com.projeto.service.ItemPedidoVendaService;
 import com.projeto.service.PedidoVendaService;
 
 @Controller
@@ -25,6 +33,10 @@ public class PedidoVendaController {
 	private PedidoVendaService pedidoVendaService;
 	@Autowired
 	private ClienteService clienteService;
+	@Autowired
+	private FuncionarioService funcionarioService;
+	@Autowired
+	private ItemPedidoVendaService itemPedidoVendaService;
 	
 	@GetMapping("criar")
 	public ModelAndView criar(HttpServletRequest request, @RequestParam(name = "id", required = false)Integer id) {
@@ -34,6 +46,8 @@ public class PedidoVendaController {
 			if(pedidoVenda.isPresent()) {
 				PedidoVenda form = pedidoVenda.get();
 				request.setAttribute("pedidoVenda", form);
+				request.setAttribute("page", "iframe/pedidoVendaIframe.jsp");
+				return new ModelAndView("/login/crud/base");
 			}
 		}
 		request.setAttribute("listaCliente", clienteService.findAll());
@@ -51,8 +65,21 @@ public class PedidoVendaController {
 	@PostMapping("salvar")
 	public ModelAndView salvar(PedidoVenda pedidoVenda, RedirectAttributes redirectAttributes)  {
 		try {
+			Funcionario funcionario = funcionarioService.findById(pedidoVenda.getFuncionario().getId()).get();
+			Cliente cliente = clienteService.findById(pedidoVenda.getCliente().getId()).get();
+			pedidoVenda.setCliente(cliente);
+			pedidoVenda.setFuncionario(funcionario);
 			pedidoVendaService.save(pedidoVenda);
-			redirectAttributes.addFlashAttribute("sucesso", "PedidoVenda salvo com sucesso");
+			
+			itemPedidoVendaService.deleteByPedidoVenda(pedidoVenda);
+			
+			if(pedidoVenda.getListaProdutoItem() != null && !pedidoVenda.getListaProdutoItem().isEmpty()) {
+				for(ItemPedidoVenda item : pedidoVenda.getListaProdutoItem()) {
+					item.setPedidoVenda(pedidoVenda);
+				}
+			}
+			itemPedidoVendaService.saveAll(pedidoVenda.getListaProdutoItem());
+			redirectAttributes.addFlashAttribute("sucesso", "Pedido de venda salvo com sucesso");
 			return new ModelAndView("redirect:/login/crud/PedidoVenda");
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -67,15 +94,29 @@ public class PedidoVendaController {
 		
 		if(id != null){
 			try {
+				itemPedidoVendaService.deleteByPedidoVenda(new PedidoVenda(id));
 				pedidoVendaService.deleteById(id);
-				redirectAttributes.addFlashAttribute("sucesso", "PedidoVenda deletado com sucesso");
+				redirectAttributes.addFlashAttribute("sucesso", "Pedido de venda deletado com sucesso");
 			}catch(Exception e) {
-				redirectAttributes.addFlashAttribute("erro", "Não foi possível excluir esse pedidoVenda.");
+				e.printStackTrace();
+				redirectAttributes.addFlashAttribute("erro", "Não foi possível excluir esse pedido de venda.");
 			}
 		}
 		
 		return new ModelAndView("redirect:/login/crud/PedidoVenda");
 	}
+	
+	@PostMapping("iframeCriacao")
+	public @ResponseBody ModelAndView abrirIframeCriacao(HttpServletRequest request, @RequestParam(name = "id", required = true)Integer id) {
+		Cliente cliente = clienteService.findById(id).get();
+		Usuario usuarioLogado = (Usuario)request.getSession().getAttribute("usuarioLogado");
+		Funcionario funcionario = usuarioLogado.getFuncionario();
+		
+		PedidoVenda pedidoVenda = new PedidoVenda(cliente, funcionario, new Date(System.currentTimeMillis()));
+		
+		return new ModelAndView("/login/crud/iframe/pedidoVendaIframe", "pedidoVenda", pedidoVenda);
+	}
+	
 	
 }
 

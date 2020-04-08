@@ -34,8 +34,8 @@
 				<td class="col-2">${materiaPrima.fornecedor.nome}</td>
 				<td class="col-1">R$ ${materiaPrima.precoCompra}</td>
 				<td class="col-2 colunaAcao">
-					<a class="btn btn-secondary" href="/login/crud/MateriaPrima/criar?id=${materiaPrima.id}" title="Editar"><i class="fa fa-pencil"></i></a>
-					<button class="btn btn-danger" onclick="excluirMateriaPrima(${materiaPrima.id});" title="Excluir"><i class="fa fa-trash"></i></button>
+					<a class="btn btn-secondary btn-sm" href="/login/crud/MateriaPrima/criar?id=${materiaPrima.id}" title="Editar"><i class="fa fa-pencil"></i></a>
+					<button class="btn btn-danger btn-sm" onclick="excluirMateriaPrima(${materiaPrima.id});" title="Excluir"><i class="fa fa-trash"></i></button>
 				</td>
 			</tr>
 		</c:forEach>

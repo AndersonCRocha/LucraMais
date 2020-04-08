@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="/css/bootstrap/bootstrap-grid.min.css">
         <link rel="stylesheet" href="/css/bootstrap/bootstrap-reboot.min.css">
+        <link rel="stylesheet" href="/css/select2/select2.min.css">
         <link rel="stylesheet" href="/css/default.css">
         
         <link rel="stylesheet" href="/css/fontawesome/css/fontawesome.min.css">
@@ -22,6 +23,7 @@
         <script type="text/javascript" src="/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/js/default.js"></script>
         <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+        <script type="text/javascript" src="/js/select2/select2.min.js"></script>
 
         <title>Lucra+</title>
     </head>
@@ -127,6 +129,9 @@
 	    		</div>
 	    	</aside>
 <!-- 	    	Fim do menu lateral -->
+<!-- 			Div de carregamento -->
+			<div class="divCarregamento"><span class="carregando">Carregando ... </span></div>
+<!-- 			Fim da div de carregamento -->
 	    </div>
         <script type="text/javascript" src="/js/utilDOM.js"></script>
     </body>

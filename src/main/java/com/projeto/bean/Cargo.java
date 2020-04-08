@@ -23,6 +23,9 @@ public class Cargo {
 	
 	public Cargo() {
 	}
+	public Cargo(Integer id) {
+		this.id = id;
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_cargo")

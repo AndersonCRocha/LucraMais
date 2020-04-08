@@ -20,9 +20,14 @@ public class Funcionario extends Pessoa{
 	private String rg;
 	private String pis;
 	private Cargo cargo;
-	private Endereco endereco;
 	private BigDecimal salario;
 	private Usuario usuario;
+	private String cidade;
+	private String estado;
+	private String bairro;
+	private String rua;
+	private int numero;
+	private String cep;
 	
 	private List<PedidoVenda> listaPedidoVenda = new ArrayList<PedidoVenda>();
 	
@@ -45,16 +50,30 @@ public class Funcionario extends Pessoa{
 	public Cargo getCargo() {
 		return cargo;
 	}
-	@ManyToOne(fetch = FetchType.LAZY)
-	public Endereco getEndereco() {
-		return endereco;
-	}
 	public BigDecimal getSalario() {
 		return salario;
 	}
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	public Usuario getUsuario() {
 		return usuario;
+	}
+	public String getCidade() {
+		return cidade;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public String getBairro() {
+		return bairro;
+	}
+	public String getRua() {
+		return rua;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public String getCep() {
+		return cep;
 	}
 	@OneToMany(mappedBy = "funcionario")
 	public List<PedidoVenda> getListaPedidoVenda() {
@@ -69,14 +88,29 @@ public class Funcionario extends Pessoa{
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
 	public void setSalario(BigDecimal salario) {
 		this.salario = salario;
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 	public void setListaPedidoVenda(List<PedidoVenda> listaPedidoVenda) {
 		this.listaPedidoVenda = listaPedidoVenda;

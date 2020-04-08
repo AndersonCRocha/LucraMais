@@ -13,7 +13,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Fornecedor extends Pessoa {
 	
 	private String cnpj;
@@ -24,16 +28,18 @@ public class Fornecedor extends Pessoa {
 	
 	public Fornecedor() {
 	}
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "fornecedor")
 	public List<MateriaPrima> getListaMateriaPrima() {
 		return listaMateriaPrima;
 	}
+	@JsonIgnore
 	@OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	public List<Produto> getListaProduto() {
 		return listaProduto;
 	}
+	@JsonIgnore
 	@OneToMany(mappedBy = "fornecedor")
 	public List<ContaPagar> getListaContaPagar() {
 		return listaContaPagar;

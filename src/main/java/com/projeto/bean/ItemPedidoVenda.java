@@ -16,7 +16,6 @@ public class ItemPedidoVenda {
 	private int quantidade;
 	private Produto produto;
 	private PedidoVenda pedidoVenda;
-	private ContaReceber contaReceber;
 	
 	public ItemPedidoVenda() {
 	}
@@ -29,17 +28,13 @@ public class ItemPedidoVenda {
 	public int getQuantidade() {
 		return quantidade;
 	}
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Produto getProduto() {
 		return produto;
 	}
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(optional = false)
 	public PedidoVenda getPedidoVenda() {
 		return pedidoVenda;
-	}
-	@ManyToOne(fetch = FetchType.LAZY)
-	public ContaReceber getContaReceber() {
-		return contaReceber;
 	}
 	public void setId(Integer id) {
 		this.id = id;
@@ -52,9 +47,6 @@ public class ItemPedidoVenda {
 	}
 	public void setPedidoVenda(PedidoVenda pedidoVenda) {
 		this.pedidoVenda = pedidoVenda;
-	}
-	public void setContaReceber(ContaReceber contaReceber) {
-		this.contaReceber = contaReceber;
 	}
 	
 }

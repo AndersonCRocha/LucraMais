@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -23,7 +21,12 @@ public class Cliente extends Pessoa {
 	private String cnpj;
 	private BigDecimal limiteCredito;
 	private SituacaoCliente situacaoCliente;
-	private Endereco endereco;
+	private String cidade;
+	private String estado;
+	private String bairro;
+	private String rua;
+	private int numero;
+	private String cep;
 	
 	private List<PedidoVenda> listaPedidoVenda = new ArrayList<PedidoVenda>();
 	
@@ -48,9 +51,23 @@ public class Cliente extends Pessoa {
 	public SituacaoCliente getSituacaoCliente() {
 		return situacaoCliente;
 	}
-	@ManyToOne(fetch = FetchType.LAZY)
-	public Endereco getEndereco() {
-		return endereco;
+	public String getCidade() {
+		return cidade;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public String getBairro() {
+		return bairro;
+	}
+	public String getRua() {
+		return rua;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public String getCep() {
+		return cep;
 	}
 	@OneToMany(mappedBy = "cliente")
 	public List<PedidoVenda> getListaPedidoVenda() {
@@ -71,8 +88,23 @@ public class Cliente extends Pessoa {
 	public void setSituacaoCliente(SituacaoCliente situacaoCliente) {
 		this.situacaoCliente = situacaoCliente;
 	}
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 	public void setListaPedidoVenda(List<PedidoVenda> listaPedidoVenda) {
 		this.listaPedidoVenda = listaPedidoVenda;

@@ -1,31 +1,61 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="com.projeto.bean.enums.TipoPessoa"%>
 
-<h1>Pedido de venda</h1>
-
 <c:if test="${empty pedidoVenda}">
-	<div class="row" id="divSelectCliente">
-		<div class="col-xs-10 col-sm-6 col-md-6 col-lg-4">
-			<label for="clienteSelect">Selecione um cliente: </label> <select
-				name="clienteSelect" id="clienteSelect" class="form-control"
-				onchange="openIframe();" required>
-				<option></option>
-				<c:forEach items="${listaCliente}" var="cliente">
-					<option value="${cliente.id}">${cliente.nome}</option>
-				</c:forEach>
-			</select>
-		</div>
-		<div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 align-self-end">
-			<button type="button" class="btn btn-success">OK</button>
+	<div id="novoPedidoVenda">
+		<h1>Pedido de venda</h1>
+	
+		<div class="row" id="divSelectCliente">
+			<div class="col-xs-10 col-sm-6 col-md-6 col-lg-5">
+				<form id="formCliente" method="post">
+					<div class="input-group">
+						<select name="clienteSelect" id="clienteSelect" class="form-control selectTwo" style="width: 80%;" autofocus required>
+							<option></option>
+							<c:forEach items="${listaCliente}" var="cliente">
+								<option value="${cliente.id}">${cliente.nome}</option>
+							</c:forEach>
+						</select>
+				        <div class="input-group-append">
+				        	<div class="input-group">
+								<button type="button" class="btn btn-success" id="btnOk" onclick="openIframeCriacao();">OK</button>
+				        	</div>
+				        </div>
+			     	</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </c:if>
 
+<!-- <iframe name="iframePV" id="iframePedidoVenda"></iframe> -->
+
 <script type="text/javascript">
-	function openIframe() {
+	function openIframeCriacao() {
 		var indexCliente = $('#clienteSelect').val();
+		
 		if (indexCliente != "") {
-			console.log("Index: " + indexCliente)
+			$('#novoPedidoVenda').css("display","none");
+
+			$.ajax({
+				url: "/login/crud/PedidoVenda/iframeCriacao?id="+indexCliente,
+				type: 'post',
+				dataType: 'html',
+				async: false,
+				success: function(retorno){
+					$('.content').append(retorno);
+				}
+			});
+
+		}else{
+			alert("Selecione um cliente!");
 		}
 	}
+
+	$('#clienteSelect').on("keydown", (e) => {
+		if(e.which == 13) {
+			e.preventDefault();
+			$('#btnOk').click();
+		}
+	});
+
 </script>

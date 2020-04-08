@@ -34,4 +34,8 @@ public class ProdutoService {
 	public void deleteById(Integer id) {
 		produtoRepository.deleteById(id);
 	}
+	
+	public List<Produto> listarParaPV(String nome){
+		return produtoRepository.findByNomeLikeIgnoreCaseOrderByNome(nome+"%");
+	}
 }

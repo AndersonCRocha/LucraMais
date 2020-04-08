@@ -32,8 +32,8 @@
 				<td class="col-2">${funcionario.telefone}</td>
 				<td class="col-2">${funcionario.cargo.descricao}</td>
 				<td class="col-2 colunaAcao">
-					<a class="btn btn-secondary" href="/login/crud/Funcionario/criar?id=${funcionario.id}" title="Editar"><i class="fa fa-pencil"></i></a>
-					<button class="btn btn-danger" onclick="excluirFuncionario(${funcionario.id});" title="Excluir"><i class="fa fa-trash"></i></button>
+					<a class="btn btn-secondary btn-sm" href="/login/crud/Funcionario/criar?id=${funcionario.id}" title="Editar"><i class="fa fa-pencil"></i></a>
+					<button class="btn btn-danger btn-sm" onclick="excluirFuncionario(${funcionario.id});" title="Excluir"><i class="fa fa-trash"></i></button>
 				</td>
 			</tr>
 		</c:forEach>

@@ -2,6 +2,16 @@
 <%@ page import="com.projeto.bean.enums.TipoPessoa" %>
 <%@ page import="com.projeto.bean.enums.SituacaoCliente" %>
 
+<style>
+	input[type=number]::-webkit-inner-spin-button { 
+	    -webkit-appearance: none;
+	}
+	input[type=number] { 
+	   -moz-appearance: textfield;
+	   appearance: textfield;
+	}
+</style>
+
 <h1>Cadastro de clientes</h1>		
 
 <form action="/login/crud/Cliente/salvar" method="POST" accept-charset="utf-8">
@@ -68,13 +78,37 @@
 				  	<label class="form-check-label" for="situacaoRegular" style="font-weight: normal;">Regular</label>
 				</div>
 				<div class="form-check form-check-inline"> 
-				  	<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoBom" value="BOM" ${cliente.situacaoCliente == SituacaoCliente.BOM ? 'checked' : ''}>
+				  	<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoBom" value="BOM" ${cliente.situacaoCliente == SituacaoCliente.BOM ? 'checked' : cliente == null? 'checked' : ''}>
 				  	<label class="form-check-label" for="situacaoBom" style="font-weight: normal;">Bom</label>
 				</div>
 				<div class="form-check form-check-inline"> 
 				  	<input class="form-check-input" type="radio" name="situacaoCliente" id="situacaoOtimo" value="OTIMO" ${cliente.situacaoCliente == SituacaoCliente.OTIMO ? 'checked' : ''}>
 				  	<label class="form-check-label" for="situacaoOtimo" style="font-weight: normal;">Ótimo</label>
 				</div>
+			</div>
+			<div class="col-lg-2">
+				<label for="cep">CEP:</label>
+				<input type="text" name="cep" class="form-control cep" placeholder="XX.XXX-XXX" value="${cliente.cep}" autocomplete="off" required>
+			</div>
+			<div class="col-lg-5">
+				<label for="cidade">Cidade:</label>
+				<input type="text" name="cidade" id="cidade" class="form-control" placeholder="Cidade" value="${cliente.cidade}" autocomplete="off" required>
+			</div>	
+			<div class="col-lg-1">
+				<label for="estado">UF:</label>
+				<input type="text" name="estado" id="estado" class="form-control" placeholder="UF" maxlength="2" value="${cliente.estado}" autocomplete="off" required>
+			</div>	
+			<div class="col-lg-4">
+				<label for="bairro">Bairro:</label>
+				<input type="text" name="bairro" id="bairro" class="form-control" placeholder="Bairro" value="${cliente.bairro}" autocomplete="off" required>
+			</div>	
+			<div class="col-lg-4">
+				<label for="rua">Rua:</label>
+				<input type="text" name="rua" id="rua" class="form-control" placeholder="Rua" value="${cliente.rua}" autocomplete="off" required>
+			</div>	
+			<div class="col-lg-1">
+				<label for="numero">Nº:</label>
+				<input type="number" name="numero" class="form-control only-number" placeholder="Nº" value="${cliente.numero}" autocomplete="off" required>
 			</div>	
 		</div>
 		<br>
