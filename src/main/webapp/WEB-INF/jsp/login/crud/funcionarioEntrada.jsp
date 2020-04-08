@@ -68,7 +68,7 @@
 			</div>
 			<div class="col-lg-4">
 				<label for="cidade">Cidade:</label>
-				<input type="text" name="nome" id="cidade" class="form-control" placeholder="Cidade" value="${cliente.cidade}" autocomplete="off" required>
+				<input type="text" name="cidade" id="cidade" class="form-control" placeholder="Cidade" value="${cliente.cidade}" autocomplete="off" required>
 			</div>
 			<div class="col-lg-1">
 				<label for="estado">UF:</label>
