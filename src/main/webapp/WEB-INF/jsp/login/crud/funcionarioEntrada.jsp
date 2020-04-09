@@ -64,27 +64,27 @@
 			</div>
 			<div class="col-lg-2">
 				<label for="cep">CEP:</label>
-				<input type="text" name="cep" class="form-control cep" placeholder="XX.XXX-XXX" value="${cliente.cep}" autocomplete="off" required>
+				<input type="text" name="cep" class="form-control cep" placeholder="XX.XXX-XXX" value="${funcionario.cep}" autocomplete="off" required>
 			</div>
 			<div class="col-lg-4">
 				<label for="cidade">Cidade:</label>
-				<input type="text" name="cidade" id="cidade" class="form-control" placeholder="Cidade" value="${cliente.cidade}" autocomplete="off" required>
+				<input type="text" name="cidade" id="cidade" class="form-control" placeholder="Cidade" value="${funcionario.cidade}" autocomplete="off" required>
 			</div>
 			<div class="col-lg-1">
 				<label for="estado">UF:</label>
-				<input type="text" name="estado" id="estado" class="form-control" placeholder="UF" maxlength="2" value="${cliente.estado}" autocomplete="off" required>
+				<input type="text" name="estado" id="estado" class="form-control" placeholder="UF" maxlength="2" value="${funcionario.estado}" autocomplete="off" required>
 			</div>		
 			<div class="col-lg-4">
 				<label for="bairro">Bairro:</label>
-				<input type="text" name="bairro" id="bairro" class="form-control" placeholder="Bairro" value="${cliente.bairro}" autocomplete="off" required>
+				<input type="text" name="bairro" id="bairro" class="form-control" placeholder="Bairro" value="${funcionario.bairro}" autocomplete="off" required>
 			</div>	
 			<div class="col-lg-6">
 				<label for="rua">Rua:</label>
-				<input type="text" name="rua" id="rua" class="form-control" placeholder="Rua" value="${cliente.rua}" autocomplete="off" required>
+				<input type="text" name="rua" id="rua" class="form-control" placeholder="Rua" value="${funcionario.rua}" autocomplete="off" required>
 			</div>	
 			<div class="col-lg-1">
 				<label for="numero">Nº:</label>
-				<input type="number" name="numero" class="form-control only-number" placeholder="Nº" value="${cliente.numero}" autocomplete="off" required>
+				<input type="number" name="numero" class="form-control only-number" placeholder="Nº" value="${funcionario.numero}" autocomplete="off" required>
 			</div>	
 		</div>
 		<c:choose>
