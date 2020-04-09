@@ -43,7 +43,7 @@
 						    <span><i class="fa fa-plus"></i> Cadastros</span>
 						</button>
 						<div class="dropdown-menu cadastros" aria-labelledby="dropdownCadastro">
-							<a class="dropdown-item" href="/login/crud/Funcionario"><i class="fa fa-briefcase"></i> Funcionários</a>
+							<c:if test="${usuarioLogado.admin}"><a class="dropdown-item" href="/login/crud/Funcionario"><i class="fa fa-briefcase"></i> Funcionários</a></c:if>
 	    					<a class="dropdown-item" href="/login/crud/Cliente"><i class="fa fa-group"></i> Clientes</a>
 	    					<a class="dropdown-item" href="/login/crud/Produto"><i class="fa fa-coffee"></i> Produtos</a>
 	    					<a class="dropdown-item" href="/login/crud/Fornecedor"><i class="fa fa-truck"></i> Fornecedores</a>
