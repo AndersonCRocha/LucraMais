@@ -3,9 +3,7 @@ $(document).ready(function(){
 });
 
 window.onbeforeunload = function (e) {
-	// Cancel the event
-	e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-	// Chrome requires returnValue to be set
+	e.preventDefault(); 
 	e.returnValue = '';
 	return null;
 };
@@ -29,7 +27,12 @@ $(document).keydown(function (e) {
 	if(e.which == 78 && pressedAlt) {
 		//Código executado ao pressionar alt + n
 		$('#modalProdutos').modal("toggle");
+	}else if(e.which == 69 && pressedAlt){
+		//Código executado ao pressionar alt + e
+		e.preventDefault();
+		editarItem();
 	}else if(e.which == 83 && pressedCtrl){
+		//Código executado ao pressionar ctrl + s
 		e.preventDefault();
 		salvarPedido();
 	}
@@ -39,6 +42,7 @@ $(document).keydown(function (e) {
 function clickLinhaResultado(){
     $('.active').removeClass("active");
 	$(this).addClass("active");
+	$('#descricao').html($('.active .descricao').val());
 }
 $('.linhaResultado').on("click", clickLinhaResultado);
 
@@ -135,12 +139,11 @@ function criarLinhaDoPedido(id, nome, unidadeMedida, qtd, precoUnit){
 					  		'<td class="col-6">'+nome+
 						  		'<input type="hidden" name="listaProdutoItem['+contador+'].produto.id" value="'+id+'">'+
 						  		'<input type="hidden" class="valorTotal" value="'+valorTotal+'">'+
+						  		'<input type="hidden" name="listaProdutoItem['+contador+'].quantidade" value="'+qtd+'">'+
 					  		'</td>'+
 					  		'<td class="col-1">'+unidadeMedida+'</td>'+
-					  		'<td class="col-1">'+qtd+
-					  			'<input type="hidden" name="listaProdutoItem['+contador+'].quantidade" value="'+qtd+'">'+
-				  			'</td>'+
-					  		'<td class="col-2 textoDireita">'+precoUnit+'</td>'+
+					  		'<td class="col-1">'+qtd+'</td>'+
+					  		'<td class="col-2 textoDireita">'+parseFloat(precoUnit).toFixed(2)+'</td>'+
 					  		'<td class="col-2 textoDireita">'+valorTotal+'</td>'+
 				  		'</tr>';
 	
@@ -221,14 +224,41 @@ function confirmarFormaDePagamento(){
 	});
 }
 
-function removerItem(selecionado){
+function removerItem(){
 	var selecionado = $('#produtos .active'); 
 	if($(selecionado).length != 0){
 		if(confirm("Deseja excluir esse item do pedido? ")){
 			$(selecionado).remove();
+			atualizaDadosGerais();
 		}
 	}
 }
+
+function editarItem(){
+	var selecionado = $('#produtos .active'); 
+	var nome = $('#produtos .active td:first-child').text().trim(); 
+	if($(selecionado).length != 0){
+		var qtdString = prompt("Produto: "+nome+"\nDeseja alterar para quantas unidades desse produto?");
+		if(qtdString != "" && qtdString != null){
+			var qtd = parseInt(qtdString);
+			
+			if(isNaN(qtd)){
+				alert("Digite apenas números!")
+			}else if(qtd >= 1){
+				var valorUnit = parseFloat($('#produtos .active td:eq(3)').text());
+				var valorTotal = parseFloat((qtd*valorUnit)).toFixed(2);
+				$('#produtos .active td:eq(2)').text(qtd);
+				$('#produtos .active input[name$=".quantidade"]').val(qtd);
+				$('#produtos .active .valorTotal').val(valorTotal);
+				$('#produtos .active td:eq(4)').text(valorTotal);
+				atualizaDadosGerais();
+			}else{
+				alert("A quantidade deve ser maior ou igual a 1.");
+			}
+		}
+	}
+}
+
 $('.itemPedido').click(clickLinhaResultado);
 
 $(window).keydown(function(event){

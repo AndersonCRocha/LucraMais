@@ -30,7 +30,7 @@
 			<tr class="row">
 				<td class="col-1">${pedidoVenda.id}</td>
 				<td class="col-5">${pedidoVenda.cliente.nome}</td>
-				<td class="col-2"><fmt:formatNumber pattern=" R$ ####.##" value="${pedidoVenda.valorTotal}"/> </td>
+				<td class="col-2"><fmt:formatNumber pattern=" R$ ####.00" value="${pedidoVenda.valorTotal}"/> </td>
 				<td class="col-2"><fmt:formatDate value="${pedidoVenda.dataVenda}" pattern="dd/MM/yyyy"/></td>
 				<td class="col-2 colunaAcao">
 					<a class="btn btn-secondary btn-sm" href="/login/crud/PedidoVenda/criar?id=${pedidoVenda.id}" title="Editar"><i class="fa fa-pencil"></i></a>

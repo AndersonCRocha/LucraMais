@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.projeto.bean.Usuario;
+import com.projeto.util.SistemaUtil;
 
 @Configuration
 public class AutenticacaoFiltro implements Filter {
@@ -25,7 +26,7 @@ public class AutenticacaoFiltro implements Filter {
   
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		Usuario usuarioLogado = SistemaUtil.getUsuarioLogado(req);
 		
 		String urlParaAutenticar = req.getServletPath();
 		

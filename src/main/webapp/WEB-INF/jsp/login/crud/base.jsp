@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.projeto.bean.Usuario" %>
+<%@ page import="com.projeto.util.SistemaUtil" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,7 +30,7 @@
     </head>
     <body>	
     	<%
-    		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+    		Usuario usuario = SistemaUtil.getUsuarioLogado(request);
     	%>
     	<c:set var="usuarioLogado" value="<%= usuario %>"/>
     	
@@ -43,11 +44,11 @@
 						    <span><i class="fa fa-plus"></i> Cadastros</span>
 						</button>
 						<div class="dropdown-menu cadastros" aria-labelledby="dropdownCadastro">
-							<c:if test="${usuarioLogado.admin}"><a class="dropdown-item" href="/login/crud/Funcionario"><i class="fa fa-briefcase"></i> Funcionários</a></c:if>
 	    					<a class="dropdown-item" href="/login/crud/Cliente"><i class="fa fa-group"></i> Clientes</a>
-	    					<a class="dropdown-item" href="/login/crud/Produto"><i class="fa fa-coffee"></i> Produtos</a>
 	    					<a class="dropdown-item" href="/login/crud/Fornecedor"><i class="fa fa-truck"></i> Fornecedores</a>
+							<c:if test="${usuarioLogado.admin}"><a class="dropdown-item" href="/login/crud/Funcionario"><i class="fa fa-briefcase"></i> Funcionários</a></c:if>
 	    					<a class="dropdown-item" href="/login/crud/MateriaPrima"><i class="fa fa-tags"></i> Matérias-primas</a>
+	    					<a class="dropdown-item" href="/login/crud/Produto"><i class="fa fa-coffee"></i> Produtos</a>
 						</div>
 					</div>
 					
@@ -56,10 +57,10 @@
 						    <span><i class="fa fa-file-pdf"></i> Relatórios</span>
 						</button>
 						<div class="dropdown-menu relatorios" aria-labelledby="dropdownRelatorio">
-							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
-							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
-							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
-							<a class="dropdown-item" href="#"><i class="fa fa-tag"></i> -----</a>
+							<a class="dropdown-item" href="/login/report/Cliente" target="blank"><i class="fa fa-list"></i> Clientes</a>
+							<a class="dropdown-item" href="/login/report/Fornecedor" target="blank"><i class="fa fa-list"></i> Fornecedores</a>
+							<a class="dropdown-item" href="/login/report/Funcionario" target="blank"><i class="fa fa-list"></i> Funcionários</a>
+							<a class="dropdown-item" href="/login/report/Produto" target="blank"><i class="fa fa-list"></i> Produtos</a>
 						</div>
 					</div>
 					

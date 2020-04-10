@@ -116,11 +116,10 @@
 									  		<td class="col-6">${item.produto.nome}
 										  		<input type="hidden" name="listaProdutoItem[${loop.index}].produto.id" value="${item.produto.id}">
 										  		<input type="hidden" class="valorTotal" value="${item.quantidade * item.produto.precoVenda}">
+									  			<input type="hidden" name="listaProdutoItem[${loop.index}].quantidade" value="${item.quantidade}">
 									  		</td>
 									  		<td class="col-1">${item.produto.unidadeMedida}</td>
-									  		<td class="col-1">${item.quantidade}
-									  			<input type="hidden" name="listaProdutoItem[${loop.index}].quantidade" value="${item.quantidade}">
-								  			</td>
+									  		<td class="col-1">${item.quantidade}</td>
 									  		<td class="col-2 textoDireita"><fmt:formatNumber pattern="###0.00" value="${item.produto.precoVenda }"/></td>
 									  		<td class="col-2 textoDireita"><fmt:formatNumber pattern="###0.00" value="${item.quantidade * item.produto.precoVenda}"/></td>
 								  		</tr>
@@ -135,6 +134,7 @@
 		<div class="controlesPV">
 			<div>
 				<button type="button" title="Remover item (del)" class="btn btn-danger" onclick="removerItem();"><i class="fa fa-trash"></i> Remover</button>
+				<button type="button" title="Editar item (alt + E)" class="btn btn-warning" onclick="editarItem();"><i class="fa fa-edit"></i> Editar</button>
 				<button type="button" title="Adicionar item (alt + N)" class="btn btn-success" data-toggle="modal" data-target="#modalProdutos"><i class="fa fa-plus"></i> Adicionar</button>
 			</div>
 			<div class="barraBotoes">
