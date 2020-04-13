@@ -12,26 +12,30 @@ import com.projeto.repository.TelaRepository;
 @Service
 public class TelaService {
 
-		@Autowired
-		private TelaRepository telaRepository;
-		
-		public List<Tela> findAll(){
-			return telaRepository.findAll();
-		}
-		
-		public Optional<Tela> findById(Integer id) {
-			return telaRepository.findById(id);
-		}
-		
-		public Tela save(Tela tela) {
-			return telaRepository.saveAndFlush(tela);
-		}
-		
-		public void delete(Tela tela) {
-			telaRepository.delete(tela);
-		}
-		
-		public void deleteById(Integer id) {
-			telaRepository.deleteById(id);
-		}
+	@Autowired
+	private TelaRepository telaRepository;
+	
+	public List<Tela> findAll(){
+		return telaRepository.findAll();
+	}
+	
+	public Optional<Tela> findById(Integer id) {
+		return telaRepository.findById(id);
+	}
+	
+	public Tela save(Tela tela) {
+		return telaRepository.saveAndFlush(tela);
+	}
+	
+	public void delete(Tela tela) {
+		telaRepository.delete(tela);
+	}
+	
+	public void deleteById(Integer id) {
+		telaRepository.deleteById(id);
+	}
+	
+	public List<Tela> saveAll(List<Tela> listaTela){
+		return telaRepository.saveAll(listaTela);
+	}
 }

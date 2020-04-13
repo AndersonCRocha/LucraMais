@@ -79,7 +79,6 @@ public class CargoController {
 		
 		if(id != null){
 			try {
-				permissaoService.deleteByCargo(new Cargo(id));
 				cargoService.deleteById(id);
 				redirectAttributes.addFlashAttribute("sucesso", "Cargo deletado com sucesso");
 			}catch(Exception e) {

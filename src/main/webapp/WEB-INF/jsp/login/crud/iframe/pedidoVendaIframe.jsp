@@ -210,5 +210,4 @@
 	</div>
 </div>
 
-<script src="/js/utilDOM.js"></script>
 <script src="/js/pedidoVenda.js"></script>

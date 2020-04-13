@@ -27,8 +27,6 @@
 	</div>
 </c:if>
 
-<!-- <iframe name="iframePV" id="iframePedidoVenda"></iframe> -->
-
 <script type="text/javascript">
 	function openIframeCriacao() {
 		var indexCliente = $('#clienteSelect').val();

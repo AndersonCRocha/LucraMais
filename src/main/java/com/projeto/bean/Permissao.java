@@ -25,7 +25,7 @@ public class Permissao {
 	public Cargo getCargo() {
 		return cargo;
 	}
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	public Tela getTela() {
 		return tela;
 	}

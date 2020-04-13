@@ -14,6 +14,13 @@ public class Tela {
 	private String uri;
 	private String modulo;
 	
+	public Tela() {
+	}
+	public Tela(String modulo, String uri){
+		this.modulo = modulo;
+		this.uri = uri;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_tela")
 	public Integer getId() {

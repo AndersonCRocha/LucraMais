@@ -45,4 +45,8 @@ public class PermissaoService {
 	public void deleteByCargo(Cargo cargo) {
 		permissaoRepository.deleteByCargo(cargo);
 	}
+	
+	public List<Permissao> findByCargo(Cargo cargo) {
+		return permissaoRepository.findByCargo(cargo);
+	}
 }

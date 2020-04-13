@@ -1,6 +1,7 @@
 package com.projeto.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.projeto.bean.Permissao;
 import com.projeto.bean.Usuario;
 import com.projeto.service.UsuarioService;
 
@@ -29,6 +31,10 @@ public class LoginController {
 			HttpSession session = request.getSession();
 			usuario = usuarioService.findByLogin(usuario.getLogin());
 			session.setAttribute("usuarioLogado", usuario);
+			if(usuario.getFuncionario() != null && usuario.getFuncionario().getId() != null) {
+				List<Permissao> listaPermissao = usuario.getFuncionario().getCargo().getListaPermissao();
+				session.setAttribute("listaPermissao", listaPermissao);
+			}
 			session.setMaxInactiveInterval(3600);
 			response.sendRedirect((String)session.getAttribute("urlParaAutenticar"));
 			return null;

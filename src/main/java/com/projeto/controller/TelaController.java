@@ -48,7 +48,7 @@ public class TelaController {
 	public ModelAndView salvar(Tela tela, RedirectAttributes redirectAttributes)  {
 		try {
 			telaService.save(tela);
-			redirectAttributes.addFlashAttribute("sucesso", "Tela salvo com sucesso");
+			redirectAttributes.addFlashAttribute("sucesso", "Tela salva com sucesso");
 			return new ModelAndView("redirect:/login/crud/Tela");
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -64,9 +64,9 @@ public class TelaController {
 		if(id != null){
 			try {
 				telaService.deleteById(id);
-				redirectAttributes.addFlashAttribute("sucesso", "Tela deletado com sucesso");
+				redirectAttributes.addFlashAttribute("sucesso", "Tela deletada com sucesso");
 			}catch(Exception e) {
-				redirectAttributes.addFlashAttribute("erro", "Não foi possível excluir esse tela.");
+				redirectAttributes.addFlashAttribute("erro", "Não foi possível excluir essa tela.");
 			}
 		}
 		

@@ -35,7 +35,7 @@
 				<label for="telefone">Telefone:</label>
 				<input type="text" name="telefone" class="form-control phone" placeholder="(XX) XXXXX-XXXX" value="${cliente.telefone}" autocomplete="off" required>
 			</div>
-			<div class="col-lg-4 offset-1">
+			<div class="col-lg-4 offset-lg-1">
 				<label>Tipo de pessoa</label><br>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" name="tipoPessoa" id="pessoaFisica" value="PESSOA_FISICA" ${cliente.tipoPessoa == TipoPessoa.PESSOA_FISICA ? 'checked' : empty cliente ? 'checked' : ''}>
