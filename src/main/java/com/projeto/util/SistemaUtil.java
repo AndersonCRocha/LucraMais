@@ -16,13 +16,16 @@ public class SistemaUtil {
 		return usuario;
 	}
 	
-	@SuppressWarnings({ "unchecked", "null" })
+	@SuppressWarnings({ "unchecked" })
 	public static boolean temPermissao(HttpServletRequest request, String url) {
 		HttpSession session = request.getSession();
 		List<Permissao> listaPermissao = (List<Permissao>)session.getAttribute("listaPermissao");
 		boolean retorno = false;
-		
-		if(listaPermissao != null || !listaPermissao.isEmpty()) {
+		Usuario usuarioLogado = (Usuario)getUsuarioLogado(request); 
+		if(usuarioLogado.getAdmin() != null && usuarioLogado.getAdmin()){
+			return true;
+		}
+		if(listaPermissao != null && !listaPermissao.isEmpty()) {
 			retorno = verificaPermissao(listaPermissao, url);
 		}
 		return retorno;

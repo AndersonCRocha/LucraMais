@@ -1,4 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.projeto.util.SistemaUtil" %>
+
+<%    		
+	boolean cadMateriaPrima = SistemaUtil.temPermissao(request, "/login/crud/MateriaPrima/criar");
+	boolean removeMateriaPrima = SistemaUtil.temPermissao(request, "/login/crud/MateriaPrima/excluir");
+%>
 
 <script type="text/javascript">
 	function excluirMateriaPrima(id){
@@ -10,7 +16,7 @@
 <div class="tituloPaginas">
 	<h1>Listagem de matérias-primas</h1>
 	<div>
-		<a class="btn btn-success" href="/login/crud/MateriaPrima/criar"><i class="fa fa-plus "></i> Novo</a>
+		<c:if test="<%=cadMateriaPrima%>"><a class="btn btn-success" href="/login/crud/MateriaPrima/criar"><i class="fa fa-plus "></i> Novo</a></c:if>
 	</div>
 </div>
 <div>
@@ -34,8 +40,8 @@
 				<td class="col-2">${materiaPrima.fornecedor.nome}</td>
 				<td class="col-1">R$ ${materiaPrima.precoCompra}</td>
 				<td class="col-2 colunaAcao">
-					<a class="btn btn-secondary btn-sm" href="/login/crud/MateriaPrima/criar?id=${materiaPrima.id}" title="Editar"><i class="fa fa-pencil"></i></a>
-					<button class="btn btn-danger btn-sm" onclick="excluirMateriaPrima(${materiaPrima.id});" title="Excluir"><i class="fa fa-trash"></i></button>
+					<c:if test="<%=cadMateriaPrima%>"><a class="btn btn-secondary btn-sm" href="/login/crud/MateriaPrima/criar?id=${materiaPrima.id}" title="Editar"><i class="fa fa-pencil"></i></a></c:if>
+					<c:if test="<%=removeMateriaPrima%>"><button class="btn btn-danger btn-sm" onclick="excluirMateriaPrima(${materiaPrima.id});" title="Excluir"><i class="fa fa-trash"></i></button></c:if>
 				</td>
 			</tr>
 		</c:forEach>

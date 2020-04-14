@@ -41,5 +41,4 @@ public class Tela {
 	public void setModulo(String modulo) {
 		this.modulo = modulo;
 	}
-	
 }

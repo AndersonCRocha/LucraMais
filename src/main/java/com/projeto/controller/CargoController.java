@@ -61,6 +61,7 @@ public class CargoController {
 			if(cargo.getListaPermissao() != null && !cargo.getListaPermissao().isEmpty()) {
 				for(Permissao permissao : cargo.getListaPermissao()) {
 					permissao.setCargo(cargo);
+					permissao.setId(null);
 				}
 			}
 			permissaoService.saveAll(cargo.getListaPermissao());

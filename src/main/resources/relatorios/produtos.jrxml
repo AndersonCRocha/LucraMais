@@ -152,7 +152,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{precoVenda}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["R$ " + $F{precoVenda}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

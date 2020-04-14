@@ -67,8 +67,16 @@ public class TelaInit {
 			
 			//------------------------URI's dos process----------------------------------
 			
-			listaTela.add(new Tela("Iframe do Pedido de venda","/login/crud/PedidoVenda/iframeCriacao"));
-			listaTela.add(new Tela("Pesquisa de produtos","/login/crud/Produto/listarParaPV"));
+			listaTela.add(new Tela("Iframe de criação do PV","/login/crud/PedidoVenda/iframeCriacao"));
+			listaTela.add(new Tela("Lista de Produtos - Criação do PV","/login/crud/Produto/listarParaPV"));
+			
+			
+			//------------------------URI's dos relatórios--------------------------------
+			
+			listaTela.add(new Tela("Relatório de Clientes","/login/report/Cliente"));
+			listaTela.add(new Tela("Relatório de Fornecedores","/login/report/Fornecedor"));
+			listaTela.add(new Tela("Relatório de Funcionários","/login/report/Funcionario"));
+			listaTela.add(new Tela("Relatório de Produtos","/login/report/Produto"));
 			
 			telaService.saveAll(listaTela);
 		}

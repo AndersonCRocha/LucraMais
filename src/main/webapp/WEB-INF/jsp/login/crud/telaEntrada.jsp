@@ -5,6 +5,7 @@
 	<spam><b>Listagem: </b>/login/crud/Usuario</spam>
 	<spam><b>Criação e edição: </b>/login/crud/Usuario/criar</spam>
 	<spam><b>Exclusão: </b>/login/crud/Usuario/excluir</spam>
+	<spam><b>Relatório: </b>/login/report/Produto</spam>
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 	</button>

@@ -122,6 +122,10 @@
 			var novoNome = 'listaPermissao['+index+'].tela.id';
 			$(this).attr("name", novoNome);
 		});
+		$('.permissaoid').each(function(index){
+			var novoNome = 'listaPermissao['+index+'].id';
+			$(this).attr("name", novoNome);
+		});
 	}
 	
 	function foiAdicionado(id){

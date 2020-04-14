@@ -22,7 +22,6 @@
         
         <script type="text/javascript" src="/js/jquery.js"></script>
         <script type="text/javascript" src="/js/bootstrap/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="/js/default.js"></script>
         <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="/js/select2/select2.min.js"></script>
 
@@ -31,6 +30,22 @@
     <body>	
     	<%
     		Usuario usuario = SistemaUtil.getUsuarioLogado(request);
+    		boolean listCliente = SistemaUtil.temPermissao(request, "/login/crud/Cliente");
+    		boolean listFornecedor = SistemaUtil.temPermissao(request, "/login/crud/Fornecedor");
+    		boolean listFuncionario = SistemaUtil.temPermissao(request, "/login/crud/Funcionario");
+    		boolean listMateriaPrima = SistemaUtil.temPermissao(request, "/login/crud/MateriaPrima");
+    		boolean listProduto = SistemaUtil.temPermissao(request, "/login/crud/Produto");
+    		boolean listUsuario = SistemaUtil.temPermissao(request, "/login/crud/Usuario");
+    		boolean listTela = SistemaUtil.temPermissao(request, "/login/crud/Tela");
+    		boolean listCargo = SistemaUtil.temPermissao(request, "/login/crud/Cargo");
+    		boolean listPedidoVenda = SistemaUtil.temPermissao(request, "/login/crud/PedidoVenda");
+    		
+    		boolean relCliente = SistemaUtil.temPermissao(request, "/login/report/Cliente");
+    		boolean relFornecedor = SistemaUtil.temPermissao(request, "/login/report/Fornecedor");
+    		boolean relFuncionario = SistemaUtil.temPermissao(request, "/login/report/Funcionario");
+    		boolean relProduto = SistemaUtil.temPermissao(request, "/login/report/Produto");
+    		
+    		boolean cadPedidoVenda = SistemaUtil.temPermissao(request, "/login/crud/PedidoVenda/criar");
     	%>
     	<c:set var="usuarioLogado" value="<%= usuario %>"/>
     	
@@ -39,51 +54,59 @@
 	    	<header class="header">
 	    		<nav class="menuHeader">
 		    		<a class="logo" href="/login/index"><img src="/img/logo.png"></a>
-	    			<div class="btn-group cadastro" role="group">
-						<button id="dropdownCadastro" type="button" class="btn botoesMenuHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
-						    <span><i class="fa fa-plus"></i> Cadastros</span>
-						</button>
-						<div class="dropdown-menu cadastros" aria-labelledby="dropdownCadastro">
-	    					<a class="dropdown-item" href="/login/crud/Cliente"><i class="fa fa-group"></i> Clientes</a>
-	    					<a class="dropdown-item" href="/login/crud/Fornecedor"><i class="fa fa-truck"></i> Fornecedores</a>
-							<c:if test="${usuarioLogado.admin}"><a class="dropdown-item" href="/login/crud/Funcionario"><i class="fa fa-briefcase"></i> Funcionários</a></c:if>
-	    					<a class="dropdown-item" href="/login/crud/MateriaPrima"><i class="fa fa-tags"></i> Matérias-primas</a>
-	    					<a class="dropdown-item" href="/login/crud/Produto"><i class="fa fa-coffee"></i> Produtos</a>
+	    			<c:if test="<%= listCliente || listFornecedor || listFuncionario || listMateriaPrima || listProduto %>">
+		    			<div class="btn-group cadastro" role="group">
+							<button id="dropdownCadastro" type="button" class="btn botoesMenuHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
+							    <span><i class="fa fa-plus"></i> Cadastros</span>
+							</button>
+							<div class="dropdown-menu cadastros" aria-labelledby="dropdownCadastro">
+		    					<c:if test="<%=listCliente%>"><a class="dropdown-item" href="/login/crud/Cliente"><i class="fa fa-group"></i> Clientes</a></c:if>
+		    					<c:if test="<%=listFornecedor%>"><a class="dropdown-item" href="/login/crud/Fornecedor"><i class="fa fa-truck"></i> Fornecedores</a></c:if>
+								<c:if test="<%=listFuncionario%>"><a class="dropdown-item" href="/login/crud/Funcionario"><i class="fa fa-briefcase"></i> Funcionários</a></c:if>
+		    					<c:if test="<%=listMateriaPrima%>"><a class="dropdown-item" href="/login/crud/MateriaPrima"><i class="fa fa-tags"></i> Matérias-primas</a></c:if>
+		    					<c:if test="<%=listProduto%>"><a class="dropdown-item" href="/login/crud/Produto"><i class="fa fa-coffee"></i> Produtos</a></c:if>
+							</div>
 						</div>
-					</div>
+	    			</c:if>
+	    			
+					<c:if test="<%= relCliente || relFornecedor || relFuncionario || relProduto %>">
+		    			<div class="btn-group relatorios" role="group">
+							<button id="dropdownRelatorio" type="button" class="btn botoesMenuHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
+							    <span><i class="fa fa-file-pdf"></i> Relatórios</span>
+							</button>
+							<div class="dropdown-menu relatorios" aria-labelledby="dropdownRelatorio">
+								<c:if test="<%=relCliente%>"><a class="dropdown-item" href="/login/report/Cliente" target="blank"><i class="fa fa-list"></i> Clientes</a></c:if>
+								<c:if test="<%=relFornecedor%>"><a class="dropdown-item" href="/login/report/Fornecedor" target="blank"><i class="fa fa-list"></i> Fornecedores</a></c:if>
+								<c:if test="<%=relFuncionario%>"><a class="dropdown-item" href="/login/report/Funcionario" target="blank"><i class="fa fa-list"></i> Funcionários</a></c:if>
+								<c:if test="<%=relProduto%>"><a class="dropdown-item" href="/login/report/Produto" target="blank"><i class="fa fa-list"></i> Produtos</a></c:if>
+							</div>
+						</div>
+					</c:if>
 					
-	    			<div class="btn-group relatorios" role="group">
-						<button id="dropdownRelatorio" type="button" class="btn botoesMenuHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
-						    <span><i class="fa fa-file-pdf"></i> Relatórios</span>
-						</button>
-						<div class="dropdown-menu relatorios" aria-labelledby="dropdownRelatorio">
-							<a class="dropdown-item" href="/login/report/Cliente" target="blank"><i class="fa fa-list"></i> Clientes</a>
-							<a class="dropdown-item" href="/login/report/Fornecedor" target="blank"><i class="fa fa-list"></i> Fornecedores</a>
-							<a class="dropdown-item" href="/login/report/Funcionario" target="blank"><i class="fa fa-list"></i> Funcionários</a>
-							<a class="dropdown-item" href="/login/report/Produto" target="blank"><i class="fa fa-list"></i> Produtos</a>
+					<c:if test="<%= listUsuario || listTela || listCargo %>">
+		    			<div class="btn-group configs" role="group">
+							<button id="dropdownConfigs" type="button" class="btn botoesMenuHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
+							    <span><i class="fa fa-cogs"></i> Configurações</span>
+							</button>
+							<div class="dropdown-menu configs" aria-labelledby="dropdownConfigs">
+								<c:if test="<%=listUsuario%>"><a class="dropdown-item" href="/login/crud/Usuario"><i class="fa fa-user"></i> Usuários </a></c:if>
+								<c:if test="<%=listTela%>"><a class="dropdown-item" href="/login/crud/Tela"><i class="fa fa-clone"></i> Telas </a></c:if>
+								<c:if test="<%=listCargo%>"><a class="dropdown-item" href="/login/crud/Cargo"><i class="fa fa-sitemap"></i> Cargos</a></c:if>
+							</div>
 						</div>
-					</div>
+					</c:if>
 					
-	    			<div class="btn-group configs" role="group">
-						<button id="dropdownConfigs" type="button" class="btn botoesMenuHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
-						    <span><i class="fa fa-cogs"></i> Configurações</span>
-						</button>
-						<div class="dropdown-menu configs" aria-labelledby="dropdownConfigs">
-							<c:if test="${usuarioLogado.admin}"><a class="dropdown-item" href="/login/crud/Usuario"><i class="fa fa-user"></i> Usuários </a></c:if>
-							<a class="dropdown-item" href="/login/crud/Tela"><i class="fa fa-clone"></i> Telas </a>
-							<a class="dropdown-item" href="/login/crud/Cargo"><i class="fa fa-sitemap"></i> Cargos</a>
-						</div>
-					</div>
-					
-	    			<div class="btn-group pedidoVenda" role="group">
-						<button id="dropdownPedidoVenda" type="button" class="btn botoesMenuHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
-						    <span><i class="fa fa-shopping-cart"></i> Pedido de venda</span>
-						</button>
-						<div class="dropdown-menu pedidoVenda" aria-labelledby="dropdownPedidoVenda">
-							<a class="dropdown-item" href="/login/crud/PedidoVenda/criar"><i class="fa fa-play"></i> Novo</a>
-							<a class="dropdown-item" href="/login/crud/PedidoVenda"><i class="fa fa-list"></i> Listagem</a>
-						</div>
-					</div>
+					<c:if test="<%= cadPedidoVenda || listPedidoVenda %>">
+		    			<div class="btn-group pedidoVenda" role="group">
+							<button id="dropdownPedidoVenda" type="button" class="btn botoesMenuHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
+							    <span><i class="fa fa-shopping-cart"></i> Pedido de venda</span>
+							</button>
+							<div class="dropdown-menu pedidoVenda" aria-labelledby="dropdownPedidoVenda">
+								<c:if test="<%=cadPedidoVenda%>"><a class="dropdown-item" href="/login/crud/PedidoVenda/criar"><i class="fa fa-play"></i> Novo</a></c:if>
+								<c:if test="<%=listPedidoVenda%>"><a class="dropdown-item" href="/login/crud/PedidoVenda"><i class="fa fa-list"></i> Listagem</a></c:if>
+							</div>
+						</div>	
+					</c:if>
 	    		</nav>
 	    	</header>
 <!-- 	    	Fim do cabeçalho -->

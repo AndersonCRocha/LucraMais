@@ -27,7 +27,7 @@ public class AutorizacaoFiltro implements Filter{
 		Usuario usuarioLogado = SistemaUtil.getUsuarioLogado(req);
 		String url = req.getServletPath();
 		
-		if(usuarioLogado.getAdmin() != null || url.equals("/login/index") || SistemaUtil.temPermissao(req, url)) {
+		if((usuarioLogado.getAdmin() != null && usuarioLogado.getAdmin())|| url.equals("/login/index") || SistemaUtil.temPermissao(req, url)) {
 			chain.doFilter(request, response);
 		}else {
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/erro403");

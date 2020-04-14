@@ -1,5 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.projeto.util.SistemaUtil" %>
 
+<%    		
+	boolean cadFornecedor = SistemaUtil.temPermissao(request, "/login/crud/Fornecedor/criar");
+	boolean removeFornecedor = SistemaUtil.temPermissao(request, "/login/crud/Fornecedor/excluir");
+%>
 <script type="text/javascript">
 	function excluirFornecedor(id){
 		if(confirm("Tem certeza que deseja excluir esse fornecedor?")){
@@ -10,7 +15,7 @@
 <div class="tituloPaginas">
 	<h1>Listagem de fornecedores</h1>
 	<div>
-		<a class="btn btn-success" href="/login/crud/Fornecedor/criar"><i class="fa fa-plus "></i> Novo</a>
+		<c:if test="<%=cadFornecedor%>"><a class="btn btn-success" href="/login/crud/Fornecedor/criar"><i class="fa fa-plus "></i> Novo</a></c:if>
 	</div>
 </div>
 <div>
@@ -32,8 +37,8 @@
 				<td class="col-2">${fornecedor.telefone}</td>
 				<td class="col-2">${fornecedor.cnpj}</td>
 				<td class="col-2 colunaAcao">
-					<a class="btn btn-secondary btn-sm" href="/login/crud/Fornecedor/criar?id=${fornecedor.id}" title="Editar"><i class="fa fa-pencil"></i></a>
-					<button class="btn btn-danger btn-sm" onclick="excluirFornecedor(${fornecedor.id});" title="Excluir"><i class="fa fa-trash"></i></button>
+					<c:if test="<%=cadFornecedor%>"><a class="btn btn-secondary btn-sm" href="/login/crud/Fornecedor/criar?id=${fornecedor.id}" title="Editar"><i class="fa fa-pencil"></i></a></c:if>
+					<c:if test="<%=removeFornecedor%>"><button class="btn btn-danger btn-sm" onclick="excluirFornecedor(${fornecedor.id});" title="Excluir"><i class="fa fa-trash"></i></button></c:if>
 				</td>
 			</tr>
 		</c:forEach>

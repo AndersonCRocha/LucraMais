@@ -1,4 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.projeto.util.SistemaUtil" %>
+
+<%    		
+	boolean cadTela = SistemaUtil.temPermissao(request, "/login/crud/Tela/criar");
+	boolean removeTela = SistemaUtil.temPermissao(request, "/login/crud/Tela/excluir");
+%>
 
 <script type="text/javascript">
 	function excluirTela(id){
@@ -10,7 +16,7 @@
 <div class="tituloPaginas">
 	<h1>Listagem de telas</h1>
 	<div>
-		<a class="btn btn-success" href="/login/crud/Tela/criar"><i class="fa fa-plus "></i> Novo</a>
+		<c:if test="<%=cadTela%>"><a class="btn btn-success" href="/login/crud/Tela/criar"><i class="fa fa-plus "></i> Novo</a></c:if>
 	</div>
 </div>
 <div>
@@ -29,8 +35,8 @@
 				<td class="col-3">${tela.modulo}</td>
 				<td class="col-7">${tela.uri}</td>
 				<td class="col-2 colunaAcao">
-					<a class="btn btn-secondary btn-sm" href="/login/crud/Tela/criar?id=${tela.id}" title="Editar"><i class="fa fa-pencil"></i></a>
-					<button class="btn btn-danger btn-sm" onclick="excluirTela(${tela.id});" title="Excluir"><i class="fa fa-trash"></i></button>
+					<c:if test="<%=cadTela%>"><a class="btn btn-secondary btn-sm" href="/login/crud/Tela/criar?id=${tela.id}" title="Editar"><i class="fa fa-pencil"></i></a></c:if>
+					<c:if test="<%=removeTela%>"><button class="btn btn-danger btn-sm" onclick="excluirTela(${tela.id});" title="Excluir"><i class="fa fa-trash"></i></button></c:if>
 				</td>
 			</tr>
 		</c:forEach>

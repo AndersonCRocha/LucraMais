@@ -3,7 +3,6 @@ package com.projeto.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,7 +39,7 @@ public class Cargo {
 	public List<Funcionario> getListaFuncionario() {
 		return listaFuncionario;
 	}
-	@OneToMany(mappedBy = "cargo", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "cargo", fetch = FetchType.EAGER, orphanRemoval = true)
 	public List<Permissao> getListaPermissao() {
 		return listaPermissao;
 	}
