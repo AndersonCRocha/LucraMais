@@ -14,6 +14,12 @@
 </script>
 <div class="tituloPaginas">
 	<h1>Listagem de fornecedores</h1>
+	<div class="caixa-pesquisa">
+		<input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar por nome">
+		<button class="btn btn-info" onclick="pesquisar();">
+			<i class="fa fa-search"></i> Buscar
+		</button>
+	</div>
 	<div>
 		<c:if test="<%=cadFornecedor%>"><a class="btn btn-success" href="/login/crud/Fornecedor/criar"><i class="fa fa-plus "></i> Novo</a></c:if>
 	</div>

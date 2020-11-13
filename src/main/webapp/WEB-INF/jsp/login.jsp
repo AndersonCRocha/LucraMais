@@ -25,7 +25,7 @@
 				</div>
 			</c:if>
 			<div class="logo"><img src="/img/logo.png"></div>
-			<div class="infoLogin">Entre com os dados para acessar:</div>
+<!-- 			<div class="infoLogin">Entre com os dados para acessar:</div> -->
 			<div class="form-group">
 				<input type="text" name="login" placeholder="Login" required autofocus="autofocus">
 				<input type="password" name="senha" placeholder="Senha" required>

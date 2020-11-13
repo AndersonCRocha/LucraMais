@@ -60,7 +60,7 @@ public class FuncionarioController {
 				funcionario.setUsuario(usuarioService.findById(funcionario.getUsuario().getId()).get());
 			}
 			funcionarioService.save(funcionario);
-			redirectAttributes.addFlashAttribute("sucesso", "Funcionario salvo com sucesso");
+			redirectAttributes.addFlashAttribute("sucesso", "Funcionário salvo com sucesso");
 			return new ModelAndView("redirect:/login/crud/Funcionario");
 		}catch(Exception e) {
 			e.printStackTrace();

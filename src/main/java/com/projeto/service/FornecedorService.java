@@ -34,4 +34,8 @@ public class FornecedorService {
 	public void deleteById(Integer id) {
 		fornecedorRepository.deleteById(id);
 	}
+
+	public List<Fornecedor> findByNome(String nome) {
+		return fornecedorRepository.findByNomeContainingIgnoreCase(nome);
+	}
 }

@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="/css/fontawesome/css/v4-shims.min.css">
         
         <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/default.js"></script>
         <script type="text/javascript" src="/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="/js/select2/select2.min.js"></script>

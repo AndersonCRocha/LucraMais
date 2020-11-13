@@ -1,9 +1,11 @@
 package com.projeto.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,7 @@ import com.projeto.service.FornecedorService;
 @Controller
 @RequestMapping(value="/login/crud/Fornecedor")
 public class FornecedorController {
+	
 	@Autowired
 	private FornecedorService fornecedorService;
 	
@@ -36,9 +39,12 @@ public class FornecedorController {
 		return new ModelAndView("/login/crud/base");
 	}
 
-	@GetMapping("")
+	@GetMapping
 	public ModelAndView listar(HttpServletRequest request) {
-		request.setAttribute("listaFornecedor", fornecedorService.findAll());
+		String nome = request.getParameter("q");
+		List<Fornecedor> listaFornecedores = StringUtils.isNotBlank(nome) 
+				? fornecedorService.findByNome(nome) : fornecedorService.findAll();
+		request.setAttribute("listaFornecedor", listaFornecedores);
 		request.setAttribute("page", "fornecedorListagem.jsp");
 		return new ModelAndView("/login/crud/base");
 	}
