@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.projeto.util.SistemaUtil" %>
+<%@ page import="org.springframework.web.servlet.support.ServletUriComponentsBuilder" %>
 
 <%    		
 	boolean cadFornecedor = SistemaUtil.temPermissao(request, "/login/crud/Fornecedor/criar");
@@ -15,7 +16,11 @@
 <div class="tituloPaginas">
 	<h1>Listagem de fornecedores</h1>
 	<div class="caixa-pesquisa">
-		<input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar por nome">
+		<a href="<%= ServletUriComponentsBuilder.fromCurrentRequestUri().toUriString() %>" class="btn btn-danger">
+			<i class="fa fa-ban"></i>
+		</a>
+		<c:set var="search" value="<%= request.getParameter(\"q\") %>"/>
+		<input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar por nome" value="${not empty search ? search : ''}">
 		<button class="btn btn-info" onclick="pesquisar();">
 			<i class="fa fa-search"></i> Buscar
 		</button>
