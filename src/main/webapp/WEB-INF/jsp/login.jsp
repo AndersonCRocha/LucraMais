@@ -1,10 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="org.springframework.web.servlet.support.ServletUriComponentsBuilder" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="Lucra+"> 
+    <meta property="og:description" content="Projeto desenvolvido para disciplina de Processo de Desenvolvimento de software."> 
+    <meta property="og:image" content="<%= ServletUriComponentsBuilder.fromCurrentContextPath().build() %>/img/logo.png">
     
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     
