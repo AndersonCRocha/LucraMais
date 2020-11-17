@@ -1,6 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<h1>Cadastro de fornecedores</h1>		
+<c:choose>
+	<c:when test="${empty fornecedor.id}">
+		<h1>Cadastro de fornecedores</h1>		
+	</c:when>
+	<c:otherwise>
+		<h1>Edição de fornecedor</h1>		
+	</c:otherwise>
+</c:choose>
 
 <form action="/login/crud/Fornecedor/salvar" method="POST" accept-charset="utf-8">
 	<div class="form-group">

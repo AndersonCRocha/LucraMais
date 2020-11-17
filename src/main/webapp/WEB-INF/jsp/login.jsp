@@ -4,6 +4,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     
     <link href="/css/login.css" rel="stylesheet">
@@ -15,6 +17,7 @@
 </head>
 <body>
 	<div class="telaLogin">
+		<div class="logo"><img src="/img/logo.png"></div>
 		<form action="/logar" method="post" class="formLogin">
 			<c:if test="${not empty erro}">
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -24,15 +27,16 @@
 					</button>
 				</div>
 			</c:if>
-			<div class="logo"><img src="/img/logo.png"></div>
-<!-- 			<div class="infoLogin">Entre com os dados para acessar:</div> -->
 			<div class="form-group">
 				<input type="text" name="login" placeholder="Login" required autofocus="autofocus">
 				<input type="password" name="senha" placeholder="Senha" required>
-				<button type="submit" class="btn btn-block btn-primary btn-logar">Entrar</button>
+				<button type="submit" class="btn btn-block btn-success btn-logar">Entrar</button>
 			</div>
 		</form>
-		<div class="rodapeLogin"><span>&copy; Todos os direitos reservados 2020</span><span>Criado por: <Strong>Anderson Rocha - João Pedro</Strong></span></div>
+		<div class="rodapeLogin">
+			<span>&copy; Todos os direitos reservados 2020</span>
+			<span>Criado por: <strong>Anderson Rocha - João Pedro</strong></span>
+		</div>
 	</div>
 	<ul class="squares"></ul>
 	<script type="text/javascript" src="/js/login.js"></script>
