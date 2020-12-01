@@ -34,4 +34,8 @@ public class CargoService  {
 	public void deleteById(Integer id) {
 		cargoRepository.deleteById(id);
 	}
+
+	public List<Cargo> findByDescricao(String descricao) {
+		return cargoRepository.findByDescricaoContainingIgnoreCase(descricao);
+	}
 }

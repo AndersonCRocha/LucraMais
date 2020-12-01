@@ -62,7 +62,7 @@
 	    			<c:if test="<%= listCliente || listFornecedor || listFuncionario || listMateriaPrima || listProduto %>">
 		    			<div class="btn-group cadastro" role="group">
 							<button id="dropdownCadastro" type="button" class="btn botoesMenuHeader" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>
-							    <span><i class="fa fa-plus"></i> Cadastros</span>
+							    <span><i class="fa fa-plus"></i> Administração</span>
 							</button>
 							<div class="dropdown-menu cadastros" aria-labelledby="dropdownCadastro">
 		    					<c:if test="<%=listCliente%>"><a class="dropdown-item" href="/login/crud/Cliente"><i class="fa fa-group"></i> Clientes</a></c:if>

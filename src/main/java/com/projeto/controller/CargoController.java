@@ -1,9 +1,11 @@
 package com.projeto.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +49,10 @@ public class CargoController {
 
 	@GetMapping("")
 	public ModelAndView listar(HttpServletRequest request) {
-		request.setAttribute("listaCargo", cargoService.findAll());
+		String descricao = request.getParameter("q");
+		List<Cargo> listaCargo = StringUtils.isNotBlank(descricao) 
+				? cargoService.findByDescricao(descricao) : cargoService.findAll();
+		request.setAttribute("listaCargo", listaCargo);
 		request.setAttribute("page", "cargoListagem.jsp");
 		return new ModelAndView("/login/crud/base");
 	}

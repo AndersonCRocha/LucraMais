@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +46,10 @@ public class ProdutoController {
 
 	@GetMapping("")
 	public ModelAndView listar(HttpServletRequest request) {
-		request.setAttribute("listaProduto", produtoService.findAll());
+		String nome = request.getParameter("q");
+		List<Produto> listaProduto = StringUtils.isNotBlank(nome) 
+				? produtoService.findByNome(nome) : produtoService.findAll();
+		request.setAttribute("listaProduto", listaProduto);
 		request.setAttribute("page", "produtoListagem.jsp");
 		return new ModelAndView("/login/crud/base");
 	}

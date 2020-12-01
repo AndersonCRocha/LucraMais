@@ -38,4 +38,8 @@ public class ProdutoService {
 	public List<Produto> listarParaPV(String nome){
 		return produtoRepository.findByNomeLikeIgnoreCaseOrderByNome(nome+"%");
 	}
+
+	public List<Produto> findByNome(String nome) {
+		return produtoRepository.findByNomeLikeIgnoreCaseOrderByNome("%"+nome+"%");
+	}
 }
