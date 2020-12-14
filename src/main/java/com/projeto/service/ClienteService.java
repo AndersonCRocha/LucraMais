@@ -34,4 +34,8 @@ public class ClienteService {
 	public void deleteById(Integer id) {
 		clienteRepository.deleteById(id);
 	}
+
+	public List<Cliente> findByNome(String nome) {
+		return clienteRepository.findByNomeLikeIgnoreCaseOrderByNome("%"+nome+"%");
+	}
 }

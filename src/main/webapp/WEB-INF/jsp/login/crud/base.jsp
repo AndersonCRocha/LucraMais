@@ -150,8 +150,8 @@
 						    <span><i class="fa fa-user"></i>&nbsp;&nbsp; ${usuarioLogado.primeiroNome}</span>
 						</button>
 						<div class="dropdown-menu menuUser" aria-labelledby="dropdownInfoUser">
-							<a class="dropdown-item" href="#"> <i class="fa fa-pencil-square-o"></i> Alterar nome de usuário</a>
-							<a class="dropdown-item" href="#"> <i class="fa fa-key"></i> Alterar senha</a>
+<!-- 							<a class="dropdown-item" href="#"> <i class="fa fa-pencil-square-o"></i> Alterar nome de usuário</a> -->
+<!-- 							<a class="dropdown-item" href="#"> <i class="fa fa-key"></i> Alterar senha</a> -->
 							<a class="dropdown-item" href="/logout" title="Sair"><i class="fa fa-sign-out"></i> Sair</a>
 						</div>
 					</div>

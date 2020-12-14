@@ -90,7 +90,8 @@
 		<c:choose>
 			<c:when test="${empty funcionario.id}">
 				<br><h3>Dados de usuário:</h3>
-				<div class="row justify-content-between">
+				<div class="row">
+<!-- 				<div class="row justify-content-between"> -->
 					<div class="col-lg-6">
 						<label for="usuario.login">Login:</label>
 						<input type="text" name="usuario.login" class="form-control" placeholder="Login" value="${funcionario.usuario.login}" autocomplete="off" required>
@@ -99,10 +100,10 @@
 						<label for="usuario.senha">Senha:</label>
 						<input type="password" name="usuario.senha" class="form-control" placeholder="Senha" value="${funcionario.usuario.senha}" autocomplete="off" required>
 					</div>
-					<div class="col-lg-2 ">
-						<label for="admin">Administrador:</label>
-						<input type="checkbox" name="usuario.admin" class="form-check" value="${funcionario.usuario.admin}" ${funcionario.usuario.admin == true ? 'checked' : ''}>
-					</div>		
+<!-- 					<div class="col-lg-2 "> -->
+<!-- 						<label for="admin">Administrador:</label> -->
+<%-- 						<input type="checkbox" name="usuario.admin" class="form-check" value="${funcionario.usuario.admin}" ${funcionario.usuario.admin == true ? 'checked' : ''}> --%>
+<!-- 					</div>		 -->
 				</div>
 			</c:when>
 			<c:otherwise>

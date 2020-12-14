@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.projeto.util.SistemaUtil" %>
+<%@ page import="org.springframework.web.servlet.support.ServletUriComponentsBuilder" %>
 
 <%    		
 	boolean cadCliente = SistemaUtil.temPermissao(request, "/login/crud/Cliente/criar");
@@ -14,6 +15,16 @@
 </script>
 <div class="tituloPaginas">
 	<h1>Listagem de clientes</h1>
+	<div class="caixa-pesquisa">
+		<a href="<%= ServletUriComponentsBuilder.fromCurrentRequestUri().toUriString() %>" class="btn btn-danger">
+			<i class="fa fa-ban"></i>
+		</a>
+		<c:set var="search" value="<%= request.getParameter(\"q\") %>"/>
+		<input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar por nome" value="${not empty search ? search : ''}">
+		<button class="btn btn-info" onclick="pesquisar();">
+			<i class="fa fa-search"></i> Buscar
+		</button>
+	</div>
 	<div>
 		<c:if test="<%=cadCliente%>"><a class="btn btn-success" href="/login/crud/Cliente/criar"><i class="fa fa-plus "></i> Novo</a></c:if>
 	</div>
