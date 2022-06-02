@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.projeto.bean.MateriaPrima;
 
-public interface MateriaPrimaRepository extends JpaRepository<MateriaPrima, Integer>{
-	
-	Optional<MateriaPrima> findById(Integer id);
+public interface MateriaPrimaRepository extends JpaRepository<MateriaPrima, Integer> {
 
-  List<MateriaPrima> findByNomeIsContainingIgnoreCaseOrDescricaoNutricionalIsContainingIgnoreCase(String nome, String descricaoNutricional);
+    Optional<MateriaPrima> findById(Integer id);
+
+    List<MateriaPrima> findByNomeIsContainingIgnoreCaseOrDescricaoNutricionalIsContainingIgnoreCase(String nome, String descricaoNutricional);
 }
